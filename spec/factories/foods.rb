@@ -13,7 +13,7 @@
 
 require Rails.root.join("spec", "support", "increasing_random.rb")
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :food do
     sequence(:ingredient) { |n| "Some fake ingredient #{n}" }
     sequence(:spice) { |n| "Some fake spice #{n}" }

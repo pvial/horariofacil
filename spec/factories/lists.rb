@@ -14,7 +14,7 @@
 
 require Rails.root.join("spec", "support", "increasing_random.rb")
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :list do
     sequence(:title) { |n| "Some fake title #{n}" }
     sequence(:description) { |n| "Some fake description #{n}" }
