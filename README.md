@@ -62,7 +62,7 @@ Each resource needs 7 "golden" actions to allow users to interact with it:
 
 For the first two, the Golden Seven exist but are buggy. **Your primary job** is to debug them all until you can create, read, update, and delete each of coffee beans, and foods without running into any issues. Your secondary job is to do a bit of geocoding on the show page of Foods.
 
-Then you have to build the Golden Seven for Lists from scratch.
+Then you have to build the Golden Seven for Lists from scratch, the same way that you did for Photogram Golden 7. Hint: [the README for Photogram Golden 7](https://github.com/appdev-projects/photogram-golden-7#photogram-golden-seven) will come in handy.
 
 ### [Here is your target.](https://catalog-debug-target.herokuapp.com/)
 
@@ -81,7 +81,7 @@ All in all, you need to:
  - Build the Golden Seven for Lists from scratch. I've already generated the model for you, so you just have to do the RCAVs.
  - Some geocoding: On the show page for each food, display the correct latitude and longitude of the food based on the value in its `store_address` column. Currently, every food shows the same latitude and longitude, which is wrong. Use Google's Geocoding API.
 
-> In the unlikely case that you reach Google's Maps API free usage limit, use the following API URL stub:**
+> **In the unlikely case that you reach Google's Maps API free usage limit, use the following API URL stub:**
 
 > https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB_nAWVr-18Oi_XoadzVHmNT2vevvJfev4&address=LOCATION GOES HERE
 
