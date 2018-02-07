@@ -2,15 +2,12 @@
 
 ## Setup
 
- 1. You should have gotten here by clicking the assignment from within Canvas.
- 1. Setup [a Cloud9 workspace](https://guides.firstdraft.com/getting-started-with-cloud-9.html) as usual **with one exception**; choose "Private" rather than "Public". We're going to use our one and only Private workspace in Cloud9's free tier today.
-
-    If you already created a Private workspace in the past by accident, it won't let you create another one. Click on each workspace's name in your Cloud9 Dashboard until you find the Private one (it will have a lock beside its name). Scroll to the bottom, and make the old one Public, then try creating `catalog` again as Private.
-
- 1. In a Terminal, run `bin/setup`.
- 1. Run Project and visit your app in Chrome.
- 1. You may be prompted to run a different `bin/whitelist X.X.X.X` command each time your IP address/location changes; copy-paste it into a terminal prompt if so.
- 1. **Enable Auto-save and refresh Cloud9.**
+ 1. [Switch your Cloud9 workspace from Public to Private](https://guides.firstdraft.com/setting-up-your-cloud9-workspace.html#set-your-workspace-to-be-private) if you haven't already.
+ 1. Download this repo to your workspace as usual (`git clone ...`)
+ 1. In a Terminal, run `bin/setup` as usual.
+ 1. In a Terminal, run `bin/server` as usual.
+ 1. Preview running application as usual.
+ 1. Note: as you are working and running into error messages, you may be prompted to run a different `bin/whitelist X.X.X.X` command each time your IP address/location changes; copy-paste it into a terminal prompt if so.
  1. Check your progress/submit your work with `rails grade:all` as usual.
 
 > If at any point `rspec` fails with the message "Migrations are pending. To resolve this issue, run: bin/rake db:migrate RAILS_ENV=test" then run
@@ -25,10 +22,10 @@ Close/put away/don't use any messaging client, including but not limited to emai
 
 ## Hints
 
- - Use `/git` to **commit and branch often**; in particular, after you complete a problem and before you start the next.
+ - Navigate to `/git` and **commit often**; in particular, after you complete a problem and before you start the next.
  - Let Ruby's error messages guide you. They are trying to be helpful; they just have poor social skills. Try to make sense of their overly formal wording. The error pages also display helpful information like what controller and action were being routed to, and what was in the `params` hash.
  - Refer to your past work. This isn't a memorization competition.
- - **If you encounter an error that you think is environment or git related, ask a Private question on Piazza; we’ll tell you if it’s something you should be figuring out on your own or not.** If it's HTML, Ruby, RCAV, params, or CRUD-related, we can't help; but we can tell you the difference.
+ - **If you encounter an error that you think is environment related, ask a Private question on Piazza; we’ll tell you if it’s something you should be figuring out on your own or not.** If it's HTML, Ruby, RCAV, params, or CRUD-related, we can't help; but we can tell you the difference.
  - You don’t have to worry about CSS styling at all; just get the app to do the right thing.
  - **Use the server log** to verify that URLs are being routed to the actions you think they are, and to see what is coming in to the `params` hash.
  - In your browser, don’t get confused between the target app and your development app. Make sure you are refreshing your own app to test your work.
