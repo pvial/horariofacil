@@ -1,12 +1,12 @@
 class CoffeeBeansController < ApplicationController
   def index
-    coffee_beans = CoffeeBean.all
+    coffee_beans = CoffeeBean.order(:created_at => :desc)
 
     render("coffee_beans_templates/index.html.erb")
   end
 
   def show
-    @coffee_bean = CoffeeBean.find(params[id])
+    @coffee_bean = CoffeeBean.find(params.fetch(id))
 
     render("coffee_beans_templates/show.html.erb")
   end
@@ -18,10 +18,10 @@ class CoffeeBeansController < ApplicationController
   def create_row
     @coffee_bean = CoffeeBean.new
 
-    @coffee_bean.blend_name = params[:blend_name]
-    @coffee_bean.origin = params[:origin]
-    @coffee_bean.variety = params[:variety]
-    @coffee_bean.notes = params[:notes]
+    @coffee_bean.blend_name = params.fetch("blend_name")
+    @coffee_bean.origin = params.fetch("origin")
+    @coffee_bean.variety = params.fetch("variety")
+    @coffee_bean.notes = params.fetch("notes")
 
     @coffee_bean.save
 
@@ -33,12 +33,12 @@ class CoffeeBeansController < ApplicationController
   end
 
   def update_row
-    @coffee_bean = CoffeeBean.find(params[:id])
+    @coffee_bean = CoffeeBean.find(params.fetch("id"))
 
-    @coffee_bean.blend_name = params[:blend_name]
-    @coffee_bean.origin = params[:origin]
-    @coffee_bean.variety = params[:variety]
-    @coffee_bean.notes = params[:notes]
+    @coffee_bean.blend_name = params.fetch("blend_name")
+    @coffee_bean.origin = params.fetch("origin")
+    @coffee_bean.variety = params.fetch("variety")
+    @coffee_bean.notes = params.fetch("notes")
 
     @coffee_bean.save
 
@@ -46,7 +46,7 @@ class CoffeeBeansController < ApplicationController
   end
 
   def destroy_row
-    @coffee_bean = CoffeeBean.find(params[:id])
+    @coffee_bean = CoffeeBean.find(params.fetch("id"))
 
     @coffee_bean.destroy
   end
