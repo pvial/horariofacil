@@ -2,17 +2,20 @@
 
 ## Setup
 
- 1. [Switch your Cloud9 workspace from Public to Private](https://guides.firstdraft.com/setting-up-your-cloud9-workspace.html#set-your-workspace-to-be-private) if you haven't already.
- 1. Download this repo to your workspace as usual (`git clone ...`)
+ 1. [Setup your Cloud9 workspace as usual.](https://guides.firstdraft.com/starting-on-a-project-in-cloud9), **except choose Private rather than Public**.
  1. In a Terminal, run `bin/setup` as usual.
- 1. In a Terminal, run `bin/server` as usual.
- 1. Preview running application as usual.
- 1. Note: as you are working and running into error messages, you may be prompted to run a different `bin/whitelist X.X.X.X` command each time your IP address/location changes; copy-paste it into a terminal prompt if so.
- 1. Check your progress/submit your work with `rails grade:all` as usual.
+ 1. Click Run Project to start the app.
+ 1. Navigate to the app in Chrome.
+ 1. Note: as you are working and running into error messages, you may be prompted to run a different `bin/whitelist X.X.X.X` command each time your IP address/location changes; copy-paste it into a Terminal prompt if so in order to get much more helpful error messages, including an interactive console where you can poke at your variables to see what's going wrong.
+ 1. Check your progress/submit your work with `rails grade` as usual.
 
-> If at any point `rspec` fails with the message "Migrations are pending. To resolve this issue, run: bin/rake db:migrate RAILS_ENV=test" then run
->
-> `rails db:migrate RAILS_ENV=test`
+**If at any point `rails grade` or `rspec` fails with the message "Migrations are pending:**
+
+Then open a Terminal prompt and run:
+
+```
+rails db:migrate RAILS_ENV=test
+```
 
 ## Rules
 
@@ -81,7 +84,7 @@ All in all, you need to:
  - Build the Golden Seven for Lists from scratch. I've already generated the model for you, so you just have to do the RCAVs.
  - Some geocoding: On the show page for each food, display the correct latitude and longitude of the food based on the value in its `store_address` column. Currently, every food shows the same latitude and longitude, which is wrong. Use Google's Geocoding API.
 
-> **In the unlikely case that you reach Google's Maps API free usage limit, use the following API URL stub:**
+> **If you reach Google's Maps API free usage limit, use the following API URL stub:**
 
 > https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB_nAWVr-18Oi_XoadzVHmNT2vevvJfev4&address=LOCATION GOES HERE
 
