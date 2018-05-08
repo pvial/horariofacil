@@ -227,6 +227,6 @@ describe "/lists/[LIST ID]/edit" do
     click_on "Edit list"
     click_on "Update list"
 
-    expect(page).to have_current_path(details_page_path, only_path: true)
+    expect(page).to have_current_path(details_page_path, ignore_query: true)
   end
 end
