@@ -26,6 +26,9 @@ chdir APP_ROOT do
   #   cp 'config/database.yml.sample', 'config/database.yml'
   # end
 
+  puts "\n== Installing diff2html =="
+  system! 'npm install -g diff2html-cli'
+
   puts "\n== Preparing database =="
   system! 'bin/rails dev:prime'
 end
