@@ -3,7 +3,7 @@
 ## Setup
 
  1. [Switch your Cloud9 workspace from Public to Private](https://guides.firstdraft.com/setting-up-your-cloud9-workspace.html#set-your-workspace-to-be-private) if you haven't already.
- 1. Download this repo to your workspace as usual (`git clone ...`)
+ 1. Clone this repo to your workspace as usual
  1. In a Terminal, run `bin/setup` as usual.
  1. In a Terminal, run `bin/server` as usual.
  1. Preview running application as usual.
