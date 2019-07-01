@@ -1,0 +1,67 @@
+<% if current_planificador != nil %>
+
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-secondary mb-3" >
+          <h6 class="card-header text-white bg-secondary mb-3">  Salas en el sistema: <%= @salas.count %> </h6>
+          
+          <div class="card-body" align="left">
+            
+            <a href="/salas/new" class="btn btn-primary btn-block" align="bottom">  Crear nueva Sala </a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Nombre
+                </th>
+            
+                <th>
+                  Cuántos cursos caben
+                </th>
+                
+                <th>
+                  Asignaturas donde se usa
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% @salas.each do |sala| %>
+              <tr>
+                <td>
+                  <%= sala.nombre %>
+                </td>
+                
+                <td>
+                  <%= sala.disponibilidad %>
+                </td>
+            
+                <td>
+                  <ul>
+                    <% sala.asignaturas.each do |asig| %>
+                      <li><%= asig.nombre %></li>
+                    <% end %>
+                  </ul>
+                </td>
+
+                <td>
+                  <a href="/salas/<%= sala.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Sala </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

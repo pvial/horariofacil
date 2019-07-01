@@ -1,0 +1,63 @@
+<h1>
+  Hora lectiva #<%= @hora_lectiva.id %> details
+</h1>
+
+<a href="/hora_lectivas/<%= @hora_lectiva.id %>/edit">
+  Edit hora lectiva
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Dia
+  </dt>
+  <dd>
+    <%= @hora_lectiva.dia_id %>
+  </dd>
+
+  <dt>
+    Posicion
+  </dt>
+  <dd>
+    <%= @hora_lectiva.posicion %>
+  </dd>
+
+  <dt>
+    Activo
+  </dt>
+  <dd>
+    <%= @hora_lectiva.activo %>
+  </dd>
+
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @hora_lectiva.profesor_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@hora_lectiva.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@hora_lectiva.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_hora_lectiva/<%= @hora_lectiva.id %>">
+  Delete hora lectiva
+</a>
+
+<hr>
+
+<a href="/hora_lectivas">
+  Go back
+</a>

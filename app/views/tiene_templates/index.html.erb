@@ -1,0 +1,66 @@
+<h1>
+  All tienes
+</h1>
+
+<a href="/tienes/new">
+  Add a new tiene
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Modulo
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @tienes.each do |tiene| %>
+  <tr>
+    <td>
+      <%= tiene.id %>
+    </td>
+
+    <td>
+      <%= tiene.modulo_id %>
+    </td>
+
+    <td>
+      <%= tiene.asignatura_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(tiene.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(tiene.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/tienes/<%= tiene.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

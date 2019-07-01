@@ -1,0 +1,42 @@
+<h1>
+  Day #<%= @day.id %> details
+</h1>
+
+<a href="/days/<%= @day.id %>/edit">
+  Edit day
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @day.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@day.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@day.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_day/<%= @day.id %>">
+  Delete day
+</a>
+
+<hr>
+
+<a href="/days">
+  Go back
+</a>

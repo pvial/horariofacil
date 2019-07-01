@@ -1,0 +1,44 @@
+<!-- Validation failure messages -->
+<% if @horas_por_semana.errors.any? %>
+  <% @horas_por_semana.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit horas por semana #<%= @horas_por_semana.id %>
+</h1>
+
+<hr>
+
+<form action="/update_horas_por_semana/<%= @horas_por_semana.id %>" method="post">
+  <!-- Label and input for curso_id -->
+  <div class="form-group">
+    <label for="curso_id">
+      Curso
+    </label>
+
+    <input type="text" id="curso_id" name="curso_id" class="form-control" value="<%= @horas_por_semana.curso_id %>">
+  </div>
+
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @horas_por_semana.asignatura_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update horas por semana
+  </button>
+</form>
+
+<hr>
+
+<a href="/horas_por_semanas">
+  Go back
+</a>

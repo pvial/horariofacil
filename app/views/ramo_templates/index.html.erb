@@ -1,0 +1,58 @@
+<h1>
+  All ramos
+</h1>
+
+<a href="/ramos/new">
+  Add a new ramo
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Nombre
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @ramos.each do |ramo| %>
+  <tr>
+    <td>
+      <%= ramo.id %>
+    </td>
+
+    <td>
+      <%= ramo.nombre %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(ramo.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(ramo.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/ramos/<%= ramo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

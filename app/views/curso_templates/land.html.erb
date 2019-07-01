@@ -1,0 +1,211 @@
+<!--- vista planificador --->
+<% if current_planificador != nil %>
+  <div class="container">
+    <div style="height: 10px;"></div>
+    
+    
+    
+    <div class="row">
+      
+      <!--- Panel pendiente --->
+      <div class="col-md-6">
+          
+        <div class="card mb-6">
+          <h4 class="card-header text-white bg-warning mb-6"> Horarios disponibles </h4>
+              <!--- <div class="card-body" align="left"> </div> --->
+        </div>
+        
+      </div>
+      
+      <!--- Panel resumen de instancias creadas --->
+      
+      <div class="col-md-6">
+        <div class="row" >
+            <!--- Resumen Cursos --->  
+            <div class="card border-success mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-success mb-2"> Cursos creados </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.cursos.count %> </p>
+                  
+                     <div>
+                      <a href="/cursos" class="btn btn-success btn-block" align="bottom">
+                        
+                          Ir a Cursos
+                      </a>
+                    </div>
+              </div>
+            </div>
+            
+            <!--- Resumen Profes --->
+            <div class="card border-primary mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-primary mb-2"> Profesores creados </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.profesors.count %> </p>
+                  
+                     <div>
+                      <a href="/profesors" class="btn btn-primary btn-block" align="bottom">
+                        
+                          Ir a Profesores
+                      </a>
+                    </div>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="row" >
+            <!--- Resumen Asignaturas --->  
+            <div class="card border-warning mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-warning mb-2"> Asignaturas creadas </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.asignaturas.count %> </p>
+                  
+                     <div>
+                      <a href="/asignaturas_indice" class="btn btn-warning btn-block" align="bottom">
+                        
+                          Ir a Asignaturas
+                      </a>
+                    </div>
+              </div>
+            </div>
+            
+            <!--- Resumen Salas --->
+            <div class="card border-secondary mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-secondary mb-2"> Salas creadas </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.salas.count %> </p>
+                  
+                     <div>
+                      <a href="/salas" class="btn btn-secondary btn-block" align="bottom">
+                        
+                          Ir a Salas
+                      </a>
+                    </div>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="row" >
+            <!--- Resumen Coordinadores --->  
+            <div class="card border-danger mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-danger mb-2"> Coordinadores </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.coordinadors.count %> </p>
+                  
+                     <div>
+                      <a href="/jefe_deptos" class="btn btn-danger btn-block" align="bottom">
+                        
+                          Ir a Coordinadores
+                      </a>
+                    </div>
+              </div>
+            </div>
+            
+            <!--- Resumen Departamentos --->  
+            <div class="card border-info mb-2" style="margin: 10px;">
+              <h4 class="card-header text-white bg-info mb-2"> Departamentos </h4>
+              <div class="card-body" align="left">
+                  <p> <%= current_planificador.colegio.departamentos.count %> </p>
+                  
+                     <div>
+                      <a href="/departamentos" class="btn btn-info btn-block" align="bottom">
+                        
+                          Ir a Departamentos
+                      </a>
+                    </div>
+              </div>
+            </div>
+
+        </div>
+        
+      </div>
+    </div>
+    
+    <div style="height: 10px;"></div>
+    
+  </div>
+  
+<!--- vista no-loggeado --->
+<% elsif current_coordinador == nil %>
+  <div class="container">
+    <div style="height: 100px;">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card" style="height: 500px;">
+          <div class="card-title">
+          </div>
+          
+          <div class="card-body" align="center">
+            <div style="height: 50px;">
+            </div>
+            
+            
+            <div style="height: 100px;">
+            </div>
+            
+            <div>
+              <a href="/coordinadors/sign_in/" class="btn btn-primary btn-block" align="bottom">
+                
+                  Inicia sesión como COORDINADOR
+              </a>
+            </div>
+            
+            <div style="height: 10px;">
+            </div>            
+            
+            <div>
+              <a href="/planificadors/sign_in/" class="btn btn-warning btn-block" align="bottom">
+                
+                  Ingreso como PLANIFICADOR
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--- vista coordinador --->
+<% else %>
+  <div class="container">
+    <div style="height: 50px;">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-primary mb-3" style="min-height: 500px; max-width: 40rem;">
+          <h4 class="card-header text-white bg-primary mb-3"> <i class="fa fa-chart-line fa-1x" style="color:primary"></i> Panel de coordinador </h4>
+          
+          <div class="card-body" align="left">
+              
+            <div style="height: 20px;"></div>
+            <div>
+                <a href="/profesors/new" class="btn btn-primary btn-block" align="bottom">
+                  <i class="fa fa-fw fa-plus" ></i>
+                    Crear nuevo profesor
+                </a>
+            </div>
+            
+            <div style="height: 20px;"></div>
+            
+            <!--- contador de rechazos --->
+            <div class="card border-warning mb-6">
+              <h6 class="card-header text-white bg-warning mb-6"> <i class= "fas fa-futbol" ></i> Hola </h6>
+              <div class="card-body" align="left">
+           
+              </div>
+            </div>
+            
+            <div style="height: 10px;"></div>
+
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  
+<% end %>

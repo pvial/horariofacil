@@ -1,0 +1,74 @@
+<h1>
+  All musts
+</h1>
+
+<a href="/musts/new">
+  Add a new must
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Curso
+    </th>
+
+    <th>
+      Profesor
+    </th>
+
+    <th>
+      Creador
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @musts.each do |must| %>
+  <tr>
+    <td>
+      <%= must.id %>
+    </td>
+
+    <td>
+      <%= must.curso_id %>
+    </td>
+
+    <td>
+      <%= must.profesor_id %>
+    </td>
+
+    <td>
+      <%= must.creador %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(must.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(must.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/musts/<%= must.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

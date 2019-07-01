@@ -1,0 +1,442 @@
+
+<% if current_planificador != nil %>
+  
+  <div class="container">
+      
+      <div class="row">
+          <a href="/cursos/prof/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver profes del curso</a>
+          <a href="/cursos/asig/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver asignaturas del curso</a>
+          <a href="/cursos/hor/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver horario del curso</a>
+      </div>
+      
+      <div style="height: 50px;"></div>
+      
+      <!--- profes --->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" >
+            <h6 class="card-header text-white bg-secondary mb-3">  Profesores </h6>
+            
+            <div class="card-body" align="left">
+            
+              <!--- prof jefe --->
+              <div class="card-body">  
+                
+                  <% if @curso.profesorjefe_id != nil %>
+                  <%   profjef = "   " + Profesor.find(@curso.profesorjefe_id).nombre %>
+                  <% else %>
+                  <%   profjef = "   NA" %>
+                  <% end %>
+                  <h6> Profesor Jefe:  </h6><h8> <%=profjef %> </h8>
+                  
+                  <a href="/cursos/<%= @curso.id %>/edit" class="btn btn-primary" align="bottom">  editar </a>
+                  
+              </div>
+
+              <!--- Forzado (must) --->
+              <div class="card-body">  
+                <h6> Forzar profesor </h6>
+                <div class="row"> 
+                  <div class="col-md-8">
+                    <table class="table">
+                    <tr>
+                      <th>
+                        Profesor
+                      </th>
+                  
+                      <th>
+                        Asignatura
+                      </th>
+                      
+                      <th>
+                        Originador
+                      </th>
+                      
+                      <th>
+                      </th>
+                    </tr>
+                  
+                    <% @curso.curso_musts.each do |must| %>
+                    <tr>
+                      <!--- pre-processing  de variables --->
+                      <% profe=Profesor.find(must.profesor_id) %>
+                      <% asignas = "" %>
+                      <% profe.asignaturas.each do |asig| %>
+                      <%   asignas = asignas + ", " +asig.nombre %>
+                      <% end %>
+                      
+                      <td>
+                        <%=  profe.nombre %>
+                      </td>
+                  
+                      <td>
+                        <%= asignas %>
+                      </td>
+                  
+                      <td>
+                        <%= must.creador %>
+                      </td>
+                  
+                      <td>
+                        <a href="/delete_must/<%= must.id %>" class="btn btn-warning btn-block" align="bottom">  Eliminar </a>
+                      </td>
+                  
+                    </tr>
+                    <% end %>
+                  </table>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card border-secondary mb-3" style="height: 100%;">
+                      <div class="card-body">
+                        <form action="/create_must" method="post">
+                          
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="profesor_id">
+                              Elige el profesor
+                            </label>
+                        
+                            <%= select_tag("profesor_id", options_from_collection_for_select(Colegio.find(current_planificador.colegio_id).profesors, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          <input type="hidden" id="creador" name="creador" class="form-control" value="<%= current_planificador.email %>">
+                          
+                          <button class="btn btn-block-warning">
+                            Forzar profesor
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              <!--- Prohibido (cant) --->
+              <div class="card-body">  
+                <h6> Prohibir profesor </h6>
+                <div class="row"> 
+                  <div class="col-md-8">
+                    <table class="table">
+                    <tr>
+                      <th>
+                        Profesor
+                      </th>
+                  
+                      <th>
+                        Asignatura
+                      </th>
+                      
+                      <th>
+                        Originador
+                      </th>
+                      
+                      <th>
+                      </th>
+                    </tr>
+                  
+                    <% @curso.curso_cants.each do |cant| %>
+                    <tr>
+                      <!--- pre-processing  de variables --->
+                      <% profe=Profesor.find(cant.profesor_id) %>
+                      <% asignas = "" %>
+                      <% profe.asignaturas.each do |asig| %>
+                      <%   asignas = asignas + ", " +asig.nombre %>
+                      <% end %>
+                      
+                      <td>
+                        <%=  profe.nombre %>
+                      </td>
+                  
+                      <td>
+                        <%= asignas %>
+                      </td>
+                  
+                      <td>
+                        <%= cant.creador %>
+                      </td>
+                  
+                      <td>
+                        <a href="/delete_cant/<%= cant.id %>" class="btn btn-warning btn-block" align="bottom">  Eliminar </a>
+                      </td>
+                  
+                    </tr>
+                    <% end %>
+                  </table>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card border-secondary mb-3" style="height: 100%;">
+                      <div class="card-body">
+                        <form action="/create_cant" method="post">
+                          
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="profesor_id">
+                              Elige el profesor
+                            </label>
+                        
+                            <%= select_tag("profesor_id", options_from_collection_for_select(Colegio.find(current_planificador.colegio_id).profesors, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          <input type="hidden" id="creador" name="creador" class="form-control" value="<%= current_planificador.email %>">
+                          
+                          <button class="btn btn-block-warning">
+                            Prohibir profesor
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!--- asignaturas --->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Asignaturas </h6>
+            
+            <div class="card-body" align="left">
+            
+            <a href="/horas_por_semanas/new" class="btn btn-primary btn-block" align="bottom">  Asignar Materia al curso</a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Materia
+                </th>
+            
+                <th>
+                  Horas
+                </th>
+                
+                <th>
+                  Mineduc
+                </th>
+                
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+              
+              <tr>
+                <td>
+                  Nro Asignaturas = <%= @curso.horas_por_semanas.pluck(:asignatura_id).uniq.count %>
+                </td>
+                <td>
+                  Total Horas = <%= @curso.horas_por_semanas.pluck(:horasporsemana).sum %>
+                </td>
+             
+                <td>
+                  
+                </td>
+                
+                <td>
+                  
+                </td>
+              </tr>
+              
+              <% @curso.horas_por_semanas.each do |hps| %>
+                  <% asignatura = Asignatura.find(hps.asignatura_id) %>
+                  
+                  <tr>
+                    <td>
+                      <%= asignatura.nombre %>
+                    </td>
+                
+                    <td>
+                      <%= hps.horasporsemana %>
+                    </td>
+                    
+                    <td>
+                      <%= Ramo.find(asignatura.ramo_id).nombre %>
+                    </td>
+
+                    <td>
+                      <a href="/horas_por_semanas/<%= hps.id%>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Asignación </a>
+                    </td>
+                    
+                  </tr>
+              <% end %>
+            </table>
+            
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      <!--- horario --->        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Horario <%= @curso.nombre %> </h6>
+            
+            <div class="card-body" align="left">
+              <div class="row">
+                <!--- horario --->
+                <div class="col-md-9">
+                <table class="table">
+                  <tr>
+                    <th>
+                      Módulo
+                    </th>
+                    
+                    <% Day.all.each do |dia| %>
+                      <th>
+                        <%= dia.nombre %>
+                      </th>
+                    <% end %>
+    
+                  </tr>
+                
+                  <% for j in 1..12 do %>
+                    <tr>
+                      <td>
+                         <%= j %> 
+                      </td>
+                      
+                      <% Day.all.each do |dia| %>
+                        <% modulo = @modulos.where(:posicion => j).where(:dia_id => dia.id).last %> 
+                        
+                        <td>
+                          <% if modulo.tiene != nil %>
+                          <div style="background: darkseagreen;", align="center">
+                            <%= Asignatura.find(modulo.tiene.asignatura_id).nombre[0..5] %> <a href="/delete_tiene/<%= modulo.tiene.id %>" align="bottom">  <i class="fas fa-times-circle"></i> </a>
+                          </div>
+                          <% elsif modulo.nopuedes.last != nil%>
+                            <% modulo.nopuedes.each do |nop| %>
+                              <div style="background: darksalmon;", align="center">
+                                <%= Asignatura.find(nop.asignatura_id).nombre[0..5] %> <a href="/delete_nopuede/<%= nop.id %>" align="bottom">  <i class="fas fa-times-circle"></i> </a>
+                              </div>
+                            <% end %>
+                          <% end%>
+                        </td>
+                      
+                      <% end %>
+                      
+                    </tr>
+                  <% end %>
+                  
+                </table>
+      
+              </div>
+              
+                <!--- restricciones de horario --->
+                <div class = "col-md-3">
+                  <!--- forzado --->
+                  <div class="card border-secondary mb-5">
+                    <div class="card-body" align="left"> 
+                      
+                      <div class="row"> 
+                        <h5>Forzar materia en horario</h5>
+                      </div>
+                      
+                      <div class="row"> 
+                      
+                        <form action="/create_tiene" method="post">
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="dia_id">
+                              Elige el día
+                            </label>
+                        
+                            <%= select_tag("dia_id", options_from_collection_for_select(Day.all, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                        
+                          <!-- Label and input for posicion -->
+                          <div class="form-group">
+                            <label for="posicion">
+                              Elige el módulo
+                            </label>
+                        
+                            <%= select_tag("posicion", options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , :class => "form-control"  )) %>
+                          </div>
+                          
+                          <!-- Label and input for asignatura -->
+                          <div class="form-group">
+                            <label for="asignatura_id">
+                              Elige la materia
+                            </label>
+                        
+                            <%= select_tag("asignatura_id", options_from_collection_for_select(@asignaturas.all, :id, :nombre, {:class => "form-control",  :include_blank => true })) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          
+                          <button class="btn btn-block-primary">
+                            Forzar materia
+                          </button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  
+                  <!--- Prohibir --->
+                  <div class="card border-secondary mb-5">
+                    <div class="card-body" align="left"> 
+                      
+                      <div class="row"> 
+                        <h5>Prohibir materia en horario</h5>
+                      </div>
+                      
+                      <div class="row"> 
+                      
+                        <form action="/create_nopuede" method="post">
+                          
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="dia_id">
+                              Elige el día
+                            </label>
+                        
+                            <%= select_tag("dia_id", options_from_collection_for_select(Day.all, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                        
+                          <!-- Label and input for posicion -->
+                          <div class="form-group">
+                            <label for="posicion">
+                              Elige el módulo
+                            </label>
+                        
+                            <%= select_tag("posicion", options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , :class => "form-control"  )) %>
+                          </div>
+                          
+                          <!-- Label and input for asignatura -->
+                          <div class="form-group">
+                            <label for="asignatura_id">
+                              Elige la materia
+                            </label>
+                        
+                            <%= select_tag("asignatura_id", options_from_collection_for_select(@asignaturas.all, :id, :nombre, {:class => "form-control",  :include_blank => true })) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          
+                          <button class="btn btn-block-warning">
+                            Prohibir materia
+                          </button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </div>  
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+
+<% end %>

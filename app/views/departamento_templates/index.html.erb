@@ -1,0 +1,91 @@
+<% if current_planificador != nil %>
+
+
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-success mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-success mb-3">  Departamentos en el sistema: <%= @departamentos.count %> </h6>
+          
+          <div class="card-body" align="left">
+          
+          <a href="/departamentos/new" class="btn btn-secondary btn-block" align="bottom">  Crear nuevo Departamento </a>
+          
+            <table class="table">
+              <tr>
+                <th>
+                  Departamento
+                </th>
+                
+                <th>
+                  Coordinador(es)
+                </th>
+                
+                <th>
+                  Profesores
+                </th>
+                
+                <th>
+                  
+                </th>
+                
+                <th>
+                  
+                </th>
+
+              
+              </tr>
+            
+              <% @departamentos.each do |depto| %>
+              <% coords = Coordinador.where(:departamento_id => depto.id) %>
+              <% profs = depto.profesors %>
+              
+              <tr>
+                <td>
+                  <%= depto.nombre %>
+                </td>
+                
+                <td>
+                  <ul>
+                    <% coords.each do |coor| %>  
+                      <li> <a href="/coordinadors/<%= coor.id %>"> <%= coor.nombre %> </a> </li>
+                    <% end %>
+                  </ul>
+                  <% if coords.count ==0 %>
+                   No Ingresado
+                  <% end %>
+                </td>
+                
+                <td>
+                  <ul>
+                    <% profs.each do |prof| %>  
+                      <li> <%= prof.nombre %> </li>
+                    <% end %>
+                  </ul>
+                  <% if profs.count == 0 %>
+                    No Ingresados
+                  <% end %>
+                </td>
+                
+                
+            
+                <td>
+                  <a href="/departamentos/<%= depto.id %>" class="btn btn-secondary btn-block" align="bottom">  Ver departamento </a>
+                </td>    
+            
+                <td>
+                  <a href="/departamentos/<%= depto.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar departamento </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

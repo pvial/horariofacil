@@ -1,0 +1,93 @@
+<!-- Validation failure messages -->
+<% if @sala.present? %>
+  <% if @sala.errors.any? %>
+    <% @sala.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if current_planificador != nil %>
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-secondary mb-3" >
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nueva sala
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_sala" method="post">
+              
+              <!--- Colegio --->
+              <input type="hidden" id="colegio_id" name="colegio_id" class="form-control" value="<%= current_planificador.colegio_id %>">
+              
+              <!--- Nombre --->
+              <div class="row"> 
+                <div class="col-md-12">
+                  
+                  <!--- Grupo para Nombre --->
+                  <div class="form-group">
+                    <label for="nombre">
+                      Nombre de la Sala
+                    </label>
+                
+                    <textarea id="nombre" name="nombre" class="form-control" placeholder="Ej: Laboratorio de Computación"></textarea>
+                  </div>
+                </div>
+              </div>
+          
+              <hr>
+              
+              <!-- Capacidad  (en cursos)-->
+              <div class="row">  
+              
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="disponibilidad">
+                      Capacidad (en número de cursos)
+                    </label>
+                    <br>
+                    <%= select_tag("disponibilidad", options_for_select([0, 1, 2, 3, 4, 5] , :class => "form-control")) %>
+                    
+                  </div>
+                </div>
+          
+
+              </div>
+              
+              
+              <button class="btn btn-block btn-success">
+                Crear Curso
+              </button>
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+
+
+<a href="/salas" class="btn btn-primary">
+  Volver
+</a>
+
+<% end %>
+
+

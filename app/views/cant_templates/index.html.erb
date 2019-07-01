@@ -1,0 +1,74 @@
+<h1>
+  All cants
+</h1>
+
+<a href="/cants/new">
+  Add a new cant
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Curso
+    </th>
+
+    <th>
+      Profesor
+    </th>
+
+    <th>
+      Creador
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @cants.each do |cant| %>
+  <tr>
+    <td>
+      <%= cant.id %>
+    </td>
+
+    <td>
+      <%= cant.curso_id %>
+    </td>
+
+    <td>
+      <%= cant.profesor_id %>
+    </td>
+
+    <td>
+      <%= cant.creador %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(cant.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(cant.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/cants/<%= cant.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

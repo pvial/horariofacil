@@ -1,0 +1,49 @@
+<h1>
+  Tiene #<%= @tiene.id %> details
+</h1>
+
+<a href="/tienes/<%= @tiene.id %>/edit">
+  Edit tiene
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Modulo
+  </dt>
+  <dd>
+    <%= @tiene.modulo_id %>
+  </dd>
+
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @tiene.asignatura_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@tiene.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@tiene.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_tiene/<%= @tiene.id %>">
+  Delete tiene
+</a>
+
+<hr>
+
+<a href="/tienes">
+  Go back
+</a>

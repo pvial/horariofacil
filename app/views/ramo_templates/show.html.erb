@@ -1,0 +1,42 @@
+<h1>
+  Ramo #<%= @ramo.id %> details
+</h1>
+
+<a href="/ramos/<%= @ramo.id %>/edit">
+  Edit ramo
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @ramo.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@ramo.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@ramo.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_ramo/<%= @ramo.id %>">
+  Delete ramo
+</a>
+
+<hr>
+
+<a href="/ramos">
+  Go back
+</a>

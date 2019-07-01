@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @nopuede.present? %>
+  <% if @nopuede.errors.any? %>
+    <% @nopuede.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new nopuede
+</h1>
+
+<hr>
+
+<form action="/create_nopuede" method="post">
+  <!-- Label and input for modulo_id -->
+  <div class="form-group">
+    <label for="modulo_id">
+      Modulo
+    </label>
+
+    <input type="text" id="modulo_id" name="modulo_id" class="form-control" value="<%= @nopuede.try(:modulo_id) %>">
+  </div>
+
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @nopuede.try(:asignatura_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create nopuede
+  </button>
+</form>
+
+<hr>
+
+<a href="/nopuedes">
+  Go back
+</a>

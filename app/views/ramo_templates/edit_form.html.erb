@@ -1,0 +1,35 @@
+<!-- Validation failure messages -->
+<% if @ramo.errors.any? %>
+  <% @ramo.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit ramo #<%= @ramo.id %>
+</h1>
+
+<hr>
+
+<form action="/update_ramo/<%= @ramo.id %>" method="post">
+  <!-- Label and input for nombre -->
+  <div class="form-group">
+    <label for="nombre">
+      Nombre
+    </label>
+
+    <input type="text" id="nombre" name="nombre" class="form-control" value="<%= @ramo.nombre %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update ramo
+  </button>
+</form>
+
+<hr>
+
+<a href="/ramos">
+  Go back
+</a>

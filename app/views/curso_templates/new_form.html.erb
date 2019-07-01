@@ -1,0 +1,98 @@
+<!-- Validation failure messages -->
+<% if @curso.present? %>
+  <% if @curso.errors.any? %>
+    <% @curso.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-secondary mb-3" style="min-height: 500px;">
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nuevo curso 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_curso" method="post">
+              
+              <!--- Nombre --->
+              <div class="row"> 
+                <div class="col-md-12">
+                  
+                  <!--- Grupo para Nombre --->
+                  <div class="form-group">
+                    <label for="nombre">
+                      Nombre del Curso
+                    </label>
+                
+                    <textarea id="nombre" name="nombre" class="form-control" placeholder="Ej: III Medio A"></textarea>
+                  </div>
+                  
+                </div>
+                
+              </div>
+          
+              <hr>
+              
+              <!-- Prof y Nivel del curso -->
+              <div class="row">  
+              
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="nivel">
+                      Nivel
+                    </label>
+                    <br>
+                    <%= select_tag("nivel_id", options_from_collection_for_select(Nivel.all, :id, :nombre, :class => "form-control")) %>
+                        
+                  </div>
+                </div>
+                
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="profesorjefe">
+                      Profesor Jefe
+                    </label>
+                    
+                    <%= select_tag("profesorjefe_id",  option_groups_from_collection_for_select(Departamento.where(:colegio_id => current_planificador.colegio.id),:profesors, :nombre, :id, :nombre, :placeholder => ""), {:class => "form-control",  :include_blank => true } ) %>
+                        
+                  </div>
+                </div>
+
+              </div>
+              
+              <!--- setear colegio al curso --->
+              <input type="hidden" id="colegio_id" name="colegio_id" class="form-control" value="<%= current_planificador.colegio.id %>">
+              
+              
+              <button class="btn btn-block btn-success">
+                Crear Curso
+              </button>
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+<a href="/cursos" class="btn btn-primary">
+  Volver
+</a>

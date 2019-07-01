@@ -1,0 +1,100 @@
+<% if current_planificador != nil %>
+
+
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-secondary mb-3" style="min-height: 500px;">
+              <h6 class="card-header text-white bg-success mb-3">  Asignaturas en el sistema: <%= @asignaturas.count %> </h6>
+          
+          <div class="card-body" align="left">
+            
+            <a href="/asignaturas/new" class="btn btn-secondary btn-block" align="bottom">  Crear nueva Asignatura </a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Asignatura
+                </th>
+            
+                <th>
+                  Mineduc
+                </th>
+                
+                <th>
+                  Requiere Sala
+                </th>
+                
+                <th>
+                  Cursos asociados
+                </th>
+                
+                <th>
+                  Profesores asociados
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% @asignaturas.each do |asig| %>
+              <tr>
+                <td>
+                  <%= asig.nombre %>
+                </td>
+            
+                <td>
+                  <%= Ramo.find(asig.ramo_id).nombre %>
+                </td>
+                
+                <td>
+                    <% if asig.sala_id != nil %>    
+                        <p> Sí (<%= Sala.find(asig.sala_id).nombre %>) </p>
+                    <% else %>
+                        <p>No</p>
+                    <% end %>
+                         
+                </td>
+                
+                <td>
+                    <ul>
+                      <% asig.cursos.sort_by{ |a| [ a.nivel_id, a.id ] }.each do |curso| %>
+                      
+                              <li><%= curso.nombre %>  </li>
+                      
+                      <% end %>
+                    </ul> 
+                  
+                </td>
+
+                <td>
+                    <ul>
+                      <% asig.profesors.sort_by{ |a| [ a.departamento_id, a.id ] }.each do |prof| %>
+                      
+                              <li><%= prof.nombre %>  </li>
+                      
+                      <% end %>
+                    </ul> 
+                  
+                </td>
+                
+                
+                <td>
+                  <a href="/asignaturas/<%= asig.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Asignatura </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

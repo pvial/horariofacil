@@ -1,0 +1,79 @@
+<% if current_planificador != nil %>
+
+<div class="row">
+      <div class="col-md-12">
+        <div class="card border-success mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-success mb-3">  Asignaturas por Curso </h6>
+          
+          <div class="card-body" align="left">
+                
+                <!--- selector de cursos --->  
+                <div class="row">
+                    <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                        <option value="">Elige un curso para ver el detalle</option>
+                        <% Curso.where(:colegio_id => current_planificador.colegio.id).each do |curs| %>
+                            <option value="/asignaturas_show/<%= curs.id%>"><%= curs.nombre%></option>
+                        <% end %> 
+                    </select>
+                </div>
+                
+                <div style="height: 10px;"></div>
+
+                  <table class="table">
+                    
+                    <tr>
+                      <th>
+                        NOMBRE DEL CURSO
+                      </th>
+                      
+                      <% @ramos.each do |ramo| %>
+                        <th>
+                          <%= ramo.nombre %>
+                        </th>
+                      <% end %>  
+                      
+                      <th>
+                        
+                      </th>
+                    
+                    </tr>
+                  
+                    <% @cursos.each do |curso| %>
+                    <tr>
+                      <% alarma= 0 %>
+                      <td>
+                        <%= curso.nombre %>  
+                      </td>
+                      
+                      <% @ramos.each do |ramo| %>
+                        <td>
+                          <% asignadas = curso.calc_horas(ramo.id) %>
+                          <% requeridas = ramo.requerimientos.where(:nivel_id => curso.nivel_id).last.requerimiento %>
+                          Asignadas: <%= asignadas %> 
+                          MINEDUC: <%= requeridas %>
+                          <% if asignadas < requeridas %>
+                            <% alarma = 1 %>
+                          <% end %>
+                        </td>
+                      <% end %>
+                      
+                      <% if alarma == 1 %>
+                        <td>
+                          <a href="/cursos/<%= curso.id%>/edit" class="btn btn-danger" align="bottom">  Re-asignar horas </a>
+                        </td>
+                      <% end %>
+                      
+                    </tr>
+                    <% end %>
+                  </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<% end %>

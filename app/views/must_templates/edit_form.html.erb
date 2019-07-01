@@ -1,0 +1,53 @@
+<!-- Validation failure messages -->
+<% if @must.errors.any? %>
+  <% @must.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit must #<%= @must.id %>
+</h1>
+
+<hr>
+
+<form action="/update_must/<%= @must.id %>" method="post">
+  <!-- Label and input for curso_id -->
+  <div class="form-group">
+    <label for="curso_id">
+      Curso
+    </label>
+
+    <input type="text" id="curso_id" name="curso_id" class="form-control" value="<%= @must.curso_id %>">
+  </div>
+
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @must.profesor_id %>">
+  </div>
+
+  <!-- Label and input for creador -->
+  <div class="form-group">
+    <label for="creador">
+      Creador
+    </label>
+
+    <input type="text" id="creador" name="creador" class="form-control" value="<%= @must.creador %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update must
+  </button>
+</form>
+
+<hr>
+
+<a href="/musts">
+  Go back
+</a>

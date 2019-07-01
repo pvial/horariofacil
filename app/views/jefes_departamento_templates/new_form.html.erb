@@ -1,0 +1,117 @@
+<!-- Validation failure messages -->
+<% if @coordinador.present? %>
+  <% if @coordinador.errors.any? %>
+    <% @coordinador.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<% if current_planificador != nil %>
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-10">
+        <div class="card border-secondary mb-3" >
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nuevo coordinador 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_coordinador" method="post">
+              
+              <!--- colegio --->
+              <input type="hidden" id="colegio_id" name="colegio_id" class="form-control" value="<%= current_planificador.colegio_id %>">
+              
+              <!--- Nombre --->
+              <div class="row"> 
+                <div class="col-md-12">
+                  
+                  <!--- Grupo para Nombre --->
+                  <div class="form-group">
+                    <label for="nombre">
+                      Nombre del Coordinador
+                    </label>
+                
+                    <textarea id="nombre" name="nombre" class="form-control" placeholder="Ej: Pablo González"></textarea>
+                  </div>
+                </div>
+              </div>
+          
+              <hr>
+              <!--- email y password --->
+              <div class="row"> 
+                
+                <!--- email ---> 
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">
+                      Correo del Coordinador <br>(si no lo sabes, usa algo como el ejemplo)
+                    </label>
+                
+                    <textarea id="email" name="email" class="form-control" placeholder="pablo@colegiolosgomeros.cl"></textarea>
+                  </div>
+                </div>
+                
+                <!--- password ---> 
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">
+                      Contraseña <br>(recomendado usar algo muy simple)
+                    </label>
+                
+                    <textarea id="password" name="password" class="form-control" placeholder="contraseña"></textarea>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <hr>
+              <!-- Departamento del coord -->
+              <div class="row">  
+              
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="departamento_id">
+                      Departamento
+                    </label>
+                    <br>
+                    <%= select_tag("departamento_id", options_from_collection_for_select(Departamento.where(:colegio_id => current_planificador.colegio.id), :id, :nombre, :class => "form-control")) %>
+                        
+                  </div>
+                </div>
+              </div>
+              
+              
+              <button class="btn btn-block btn-success">
+                Crear Coordinador
+              </button>
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+
+
+<a href="/jefe_deptos" class="btn btn-primary">
+  Volver
+</a>
+
+<% end %>

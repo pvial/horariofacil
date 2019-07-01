@@ -1,0 +1,93 @@
+<% if current_planificador != nil %>
+  
+  <div class="container">
+      <div class="row">
+          <a href="/cursos/prof/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver profes del curso</a>
+          <a href="/cursos/asig/<%= @curso.id%>" class="btn btn-primary " align="bottom">  Ver asignaturas del curso</a>
+          <a href="/cursos/hor/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver horario del curso</a>
+      </div>
+
+      
+      <div style="height: 50px;"></div>
+
+      <!--- asignaturas --->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Asignaturas <%= @curso.nombre%> </h6>
+            
+            <div class="card-body" align="left">
+            
+            <a href="/horas_por_semanas/new/<%= @curso.id %>" class="btn btn-primary btn-block" align="bottom">  Asignar Materia al curso</a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Materia
+                </th>
+            
+                <th>
+                  Horas
+                </th>
+                
+                <th>
+                  Mineduc
+                </th>
+                
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+              
+              <tr>
+                <td>
+                  Nro Asignaturas = <%= @curso.horas_por_semanas.pluck(:asignatura_id).uniq.count %>
+                </td>
+                <td>
+                  Total Horas = <%= @curso.horas_por_semanas.pluck(:horasporsemana).sum %>
+                </td>
+             
+                <td>
+                  
+                </td>
+                
+                <td>
+                  
+                </td>
+              </tr>
+              
+              <% @curso.horas_por_semanas.each do |hps| %>
+                  <% asignatura = Asignatura.find(hps.asignatura_id) %>
+                  
+                  <tr>
+                    <td>
+                      <%= asignatura.nombre %>
+                    </td>
+                
+                    <td>
+                      <%= hps.horasporsemana %>
+                    </td>
+                    
+                    <td>
+                      <%= Ramo.find(asignatura.ramo_id).nombre %>
+                    </td>
+
+                    <td>
+                      <a href="/horas_por_semanas/<%= hps.id%>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Asignación </a>
+                    </td>
+                    
+                  </tr>
+              <% end %>
+            </table>
+            
+          </div>
+          </div>
+        </div>
+      </div>
+      
+
+  </div>
+
+<% end %>

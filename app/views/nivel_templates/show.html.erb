@@ -1,0 +1,42 @@
+<h1>
+  Nivel #<%= @nivel.id %> details
+</h1>
+
+<a href="/nivels/<%= @nivel.id %>/edit">
+  Edit nivel
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @nivel.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@nivel.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@nivel.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_nivel/<%= @nivel.id %>">
+  Delete nivel
+</a>
+
+<hr>
+
+<a href="/nivels">
+  Go back
+</a>

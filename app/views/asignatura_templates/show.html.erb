@@ -1,0 +1,56 @@
+<h1>
+  Asignatura #<%= @asignatura.id %> details
+</h1>
+
+<a href="/asignaturas/<%= @asignatura.id %>/edit">
+  Edit asignatura
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Colegio
+  </dt>
+  <dd>
+    <%= @asignatura.colegio_id %>
+  </dd>
+
+  <dt>
+    Ramo
+  </dt>
+  <dd>
+    <%= @asignatura.ramo_id %>
+  </dd>
+
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @asignatura.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@asignatura.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@asignatura.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_asignatura/<%= @asignatura.id %>">
+  Delete asignatura
+</a>
+
+<hr>
+
+<a href="/asignaturas">
+  Go back
+</a>

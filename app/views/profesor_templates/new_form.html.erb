@@ -1,0 +1,90 @@
+<!-- Validation failure messages -->
+<% if @profesor.present? %>
+  <% if @profesor.errors.any? %>
+    <% @profesor.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if current_planificador != nil %>
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-secondary mb-3" >
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nuevo profesor 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_profesor" method="post">
+              
+              <!--- Nombre --->
+              <div class="row"> 
+                <div class="col-md-12">
+                  
+                  <!--- Grupo para Nombre --->
+                  <div class="form-group">
+                    <label for="nombre">
+                      Nombre del Profesor
+                    </label>
+                
+                    <textarea id="nombre" name="nombre" class="form-control" placeholder="Ej: Fernando Olivares"></textarea>
+                  </div>
+                  
+                </div>
+                
+              </div>
+          
+              <hr>
+              
+              <!-- Departamento del profe -->
+              <div class="row">  
+              
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="departamento_id">
+                      Departamento
+                    </label>
+                    <br>
+                    <%= select_tag("departamento_id", options_from_collection_for_select(Departamento.where(:colegio_id => current_planificador.colegio.id), :id, :nombre, :class => "form-control")) %>
+                        
+                  </div>
+                </div>
+          
+
+              </div>
+              
+              
+              <button class="btn btn-block btn-success">
+                Crear Profesor
+              </button>
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+
+
+<a href="/profesors" class="btn btn-primary">
+  Volver
+</a>
+
+<% end %>

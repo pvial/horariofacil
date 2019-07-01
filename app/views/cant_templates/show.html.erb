@@ -1,0 +1,56 @@
+<h1>
+  Cant #<%= @cant.id %> details
+</h1>
+
+<a href="/cants/<%= @cant.id %>/edit">
+  Edit cant
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Curso
+  </dt>
+  <dd>
+    <%= @cant.curso_id %>
+  </dd>
+
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @cant.profesor_id %>
+  </dd>
+
+  <dt>
+    Creador
+  </dt>
+  <dd>
+    <%= @cant.creador %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@cant.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@cant.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_cant/<%= @cant.id %>">
+  Delete cant
+</a>
+
+<hr>
+
+<a href="/cants">
+  Go back
+</a>

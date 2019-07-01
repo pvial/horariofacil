@@ -1,0 +1,63 @@
+<!-- Validation failure messages -->
+<% if @hora_lectiva.errors.any? %>
+  <% @hora_lectiva.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit hora lectiva #<%= @hora_lectiva.id %>
+</h1>
+
+<hr>
+
+<form action="/update_hora_lectiva/<%= @hora_lectiva.id %>" method="post">
+  <!-- Label and input for dia_id -->
+  <div class="form-group">
+    <label for="dia_id">
+      Dia
+    </label>
+
+    <input type="text" id="dia_id" name="dia_id" class="form-control" value="<%= @hora_lectiva.dia_id %>">
+  </div>
+
+  <!-- Label and input for posicion -->
+  <div class="form-group">
+    <label for="posicion">
+      Posicion
+    </label>
+
+    <input type="text" id="posicion" name="posicion" class="form-control" value="<%= @hora_lectiva.posicion %>">
+  </div>
+
+  <!-- Label and input for activo -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="activo">
+    <input id="activo" class="form-check-input" name="activo" type="checkbox" value="1" <%= "checked" if @hora_lectiva.activo %>>
+
+    <label for="activo" class="form-check-label">
+      Activo
+    </label>
+  </div>
+
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @hora_lectiva.profesor_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update hora lectiva
+  </button>
+</form>
+
+<hr>
+
+<a href="/hora_lectivas">
+  Go back
+</a>

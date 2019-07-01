@@ -1,0 +1,92 @@
+<% if current_planificador != nil %>
+<% profesores = Colegio.find(current_planificador.colegio_id).profesors.sort_by{|prof| [prof.departamento_id, prof.id]} %>
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-success mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-success mb-3">  Profesores en el sistema: <%= profesores.count %> </h6>
+          
+          <div class="card-body" align="left">
+            
+            <a href="/profesors/new" class="btn btn-secondary btn-block" align="bottom">  Crear nuevo Profesor </a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Nombre
+                </th>
+            
+                <th>
+                  Departamento
+                </th>
+                
+                <th>
+                  Dedicación
+                </th>
+                
+                <th>
+                  Curso (opcional)
+                </th>
+                
+                <th>
+                  
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% profesores.each do |profe| %>
+              <tr>
+                <td>
+                  <a href="/profesors/<%= profe.id %>"> <%= profe.nombre %> </a>
+                </td>
+            
+                <td>
+                  <a href="/departamentos/<%= profe.departamento_id %>"> <%= Departamento.find(profe.departamento_id).nombre %> </a>
+                </td>
+                
+                <td>
+                  <% if Dedicacion.where(:profesor_id => profe.id).first == nil %>
+                    <% Dedicacion.where(:profesor_id => profe.id).each do |ded| %>
+                      <ul>
+                        <li> <%= Asignatura.find(ded.asignatura_id).nombre %>: <%= ded.dedicacion %> </li>
+                      </ul>
+                    <% end %>
+                  <% else %>
+                    <p> No ingresada </p>
+                  <% end %>
+                </td>
+            
+                <td>
+                  <% if Curso.where(:profesorjefe_id => profe.id).last != nil %>
+                    <%= Curso.where(:profesorjefe_id => profe.id).last.nombre %>
+                    
+                  <% else %>
+                    NO TIENE CURSO REGISTRADO
+                  <% end %>
+                </td>
+            
+                <td>
+                  <a href="/profesors/<%= profe.id %>" class="btn btn-secondary btn-block" align="bottom">  Ver profesor </a>
+                </td>    
+            
+                <td>
+                  <a href="/profesors/<%= profe.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar profesor </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

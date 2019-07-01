@@ -1,0 +1,78 @@
+<% if current_planificador != nil %>
+
+<% cursos = Curso.where(:colegio_id => current_planificador.colegio_id).sort_by{|curs| [curs.nivel, curs.id]} %>
+
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-success mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-success mb-3">  Cursos en el sistema: <%= cursos.count %> </h6>
+          
+          <div class="card-body" align="left">
+          
+          <a href="/cursos/new" class="btn btn-secondary btn-block" align="bottom">  Crear nuevo Curso </a>
+          
+            <table class="table">
+              <tr>
+                <th>
+                  Nivel
+                </th>
+                
+                <th>
+                  Curso
+                </th>
+            
+                <th>
+                  Prof Jefe
+                </th>
+                
+                <th>
+                  
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% cursos.each do |curso| %>
+              <tr>
+                <td>
+                  <a href="/nivels/<%= curso.nivel_id %>"> <%= Nivel.find(curso.nivel_id).nombre %> </a>
+                </td>
+                
+                <td>
+                  <a href="/cursos/prof/<%= curso.id %>"> <%= curso.nombre %> </a>
+                </td>
+            
+                <td>
+                  <% if curso.profesorjefe_id != nil %>
+                    <a href="/profesors/ <%= curso.profesorjefe_id %> "> <%= Profesor.find(curso.profesorjefe_id).nombre %> </a>
+                  <% else %>
+                    NO INGRESADO
+                  <% end %>  
+                </td>
+            
+                <td>
+                  <a href="/cursos/prof/<%= curso.id %>" class="btn btn-secondary btn-block" align="bottom">  Ver curso </a>
+                </td>    
+            
+                <td>
+                  <a href="/cursos/<%= curso.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar curso </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

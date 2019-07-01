@@ -1,0 +1,53 @@
+<!-- Validation failure messages -->
+<% if @asignatura.errors.any? %>
+  <% @asignatura.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit asignatura #<%= @asignatura.id %>
+</h1>
+
+<hr>
+
+<form action="/update_asignatura/<%= @asignatura.id %>" method="post">
+  <!-- Label and input for colegio_id -->
+  <div class="form-group">
+    <label for="colegio_id">
+      Colegio
+    </label>
+
+    <input type="text" id="colegio_id" name="colegio_id" class="form-control" value="<%= @asignatura.colegio_id %>">
+  </div>
+
+  <!-- Label and input for ramo_id -->
+  <div class="form-group">
+    <label for="ramo_id">
+      Ramo
+    </label>
+
+    <input type="text" id="ramo_id" name="ramo_id" class="form-control" value="<%= @asignatura.ramo_id %>">
+  </div>
+
+  <!-- Label and input for nombre -->
+  <div class="form-group">
+    <label for="nombre">
+      Nombre
+    </label>
+
+    <input type="text" id="nombre" name="nombre" class="form-control" value="<%= @asignatura.nombre %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update asignatura
+  </button>
+</form>
+
+<hr>
+
+<a href="/asignaturas">
+  Go back
+</a>

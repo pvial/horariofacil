@@ -1,0 +1,66 @@
+<h1>
+  All nopuedes
+</h1>
+
+<a href="/nopuedes/new">
+  Add a new nopuede
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Modulo
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @nopuedes.each do |nopuede| %>
+  <tr>
+    <td>
+      <%= nopuede.id %>
+    </td>
+
+    <td>
+      <%= nopuede.modulo_id %>
+    </td>
+
+    <td>
+      <%= nopuede.asignatura_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(nopuede.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(nopuede.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/nopuedes/<%= nopuede.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

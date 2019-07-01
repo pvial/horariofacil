@@ -1,0 +1,44 @@
+<!-- Validation failure messages -->
+<% if @tiene.errors.any? %>
+  <% @tiene.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit tiene #<%= @tiene.id %>
+</h1>
+
+<hr>
+
+<form action="/update_tiene/<%= @tiene.id %>" method="post">
+  <!-- Label and input for modulo_id -->
+  <div class="form-group">
+    <label for="modulo_id">
+      Modulo
+    </label>
+
+    <input type="text" id="modulo_id" name="modulo_id" class="form-control" value="<%= @tiene.modulo_id %>">
+  </div>
+
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @tiene.asignatura_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update tiene
+  </button>
+</form>
+
+<hr>
+
+<a href="/tienes">
+  Go back
+</a>

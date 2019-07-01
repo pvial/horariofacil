@@ -1,0 +1,49 @@
+<h1>
+  Profesor #<%= @profesor.id %> details
+</h1>
+
+<a href="/profesors/<%= @profesor.id %>/edit">
+  Edit profesor
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Departamento
+  </dt>
+  <dd>
+    <%= @profesor.departamento_id %>
+  </dd>
+
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @profesor.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@profesor.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@profesor.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_profesor/<%= @profesor.id %>">
+  Delete profesor
+</a>
+
+<hr>
+
+<a href="/profesors">
+  Go back
+</a>

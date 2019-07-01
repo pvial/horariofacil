@@ -1,0 +1,56 @@
+<h1>
+  Must #<%= @must.id %> details
+</h1>
+
+<a href="/musts/<%= @must.id %>/edit">
+  Edit must
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Curso
+  </dt>
+  <dd>
+    <%= @must.curso_id %>
+  </dd>
+
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @must.profesor_id %>
+  </dd>
+
+  <dt>
+    Creador
+  </dt>
+  <dd>
+    <%= @must.creador %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@must.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@must.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_must/<%= @must.id %>">
+  Delete must
+</a>
+
+<hr>
+
+<a href="/musts">
+  Go back
+</a>

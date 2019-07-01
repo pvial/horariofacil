@@ -1,0 +1,66 @@
+<h1>
+  All horas por semanas
+</h1>
+
+<a href="/horas_por_semanas/new">
+  Add a new horas por semana
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Curso
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @horas_por_semanas.each do |horas_por_semana| %>
+  <tr>
+    <td>
+      <%= horas_por_semana.id %>
+    </td>
+
+    <td>
+      <%= horas_por_semana.curso_id %>
+    </td>
+
+    <td>
+      <%= horas_por_semana.asignatura_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(horas_por_semana.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(horas_por_semana.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/horas_por_semanas/<%= horas_por_semana.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

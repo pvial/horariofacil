@@ -1,0 +1,63 @@
+<h1>
+  Modulo #<%= @modulo.id %> details
+</h1>
+
+<a href="/modulos/<%= @modulo.id %>/edit">
+  Edit modulo
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Curso
+  </dt>
+  <dd>
+    <%= @modulo.curso_id %>
+  </dd>
+
+  <dt>
+    Dia
+  </dt>
+  <dd>
+    <%= @modulo.dia_id %>
+  </dd>
+
+  <dt>
+    Activo
+  </dt>
+  <dd>
+    <%= @modulo.activo %>
+  </dd>
+
+  <dt>
+    Posicion
+  </dt>
+  <dd>
+    <%= @modulo.posicion %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@modulo.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@modulo.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_modulo/<%= @modulo.id %>">
+  Delete modulo
+</a>
+
+<hr>
+
+<a href="/modulos">
+  Go back
+</a>

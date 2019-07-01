@@ -1,0 +1,49 @@
+<h1>
+  Nopuede #<%= @nopuede.id %> details
+</h1>
+
+<a href="/nopuedes/<%= @nopuede.id %>/edit">
+  Edit nopuede
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Modulo
+  </dt>
+  <dd>
+    <%= @nopuede.modulo_id %>
+  </dd>
+
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @nopuede.asignatura_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@nopuede.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@nopuede.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_nopuede/<%= @nopuede.id %>">
+  Delete nopuede
+</a>
+
+<hr>
+
+<a href="/nopuedes">
+  Go back
+</a>

@@ -1,0 +1,181 @@
+
+<% if current_planificador != nil %>
+  
+  <div class="container">
+      
+      <div class="row">
+          <a href="/cursos/prof/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver profes del curso</a>
+          <a href="/cursos/asig/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver asignaturas del curso</a>
+          <a href="/cursos/hor/<%= @curso.id%>" class="btn btn-primary " align="bottom">  Ver horario del curso</a>
+      </div>
+      
+      <div style="height: 50px;"></div>
+      
+      <!--- horario --->        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Horario <%= @curso.nombre %> </h6>
+            
+            <div class="card-body" align="left">
+              <div class="row">
+                <!--- horario --->
+                <div class="col-md-9">
+                <table class="table">
+                  <tr>
+                    <th>
+                      Módulo
+                    </th>
+                    
+                    <% Day.all.each do |dia| %>
+                      <th>
+                        <%= dia.nombre %>
+                      </th>
+                    <% end %>
+    
+                  </tr>
+                
+                  <% for j in 1..12 do %>
+                    <tr>
+                      <td>
+                         <%= j %> 
+                      </td>
+                      
+                      <% Day.all.each do |dia| %>
+                        <% modulo = @modulos.where(:posicion => j).where(:dia_id => dia.id).last %> 
+                        
+                        <td>
+                          <% if modulo.tiene != nil %>
+                          <div style="background: darkseagreen;", align="center">
+                            <%= Asignatura.find(modulo.tiene.asignatura_id).nombre[0..5] %> <a href="/delete_tiene/<%= modulo.tiene.id %>" align="bottom">  <i class="fas fa-times-circle"></i> </a>
+                          </div>
+                          <% elsif modulo.nopuedes.last != nil%>
+                            <% modulo.nopuedes.each do |nop| %>
+                              <div style="background: darksalmon;", align="center">
+                                <%= Asignatura.find(nop.asignatura_id).nombre[0..5] %> <a href="/delete_nopuede/<%= nop.id %>" align="bottom">  <i class="fas fa-times-circle"></i> </a>
+                              </div>
+                            <% end %>
+                          <% end%>
+                        </td>
+                      
+                      <% end %>
+                      
+                    </tr>
+                  <% end %>
+                  
+                </table>
+      
+              </div>
+              
+                <!--- restricciones de horario --->
+                <div class = "col-md-3">
+                  <!--- forzado --->
+                  <div class="card border-secondary mb-5">
+                    <div class="card-body" align="left"> 
+                      
+                      <div class="row"> 
+                        <h5>Forzar materia en horario</h5>
+                      </div>
+                      
+                      <div class="row"> 
+                      
+                        <form action="/create_tiene" method="post">
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="dia_id">
+                              Elige el día
+                            </label>
+                        
+                            <%= select_tag("dia_id", options_from_collection_for_select(Day.all, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                        
+                          <!-- Label and input for posicion -->
+                          <div class="form-group">
+                            <label for="posicion">
+                              Elige el módulo
+                            </label>
+                        
+                            <%= select_tag("posicion", options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , :class => "form-control"  )) %>
+                          </div>
+                          
+                          <!-- Label and input for asignatura -->
+                          <div class="form-group">
+                            <label for="asignatura_id">
+                              Elige la materia
+                            </label>
+                        
+                            <%= select_tag("asignatura_id", options_from_collection_for_select(@asignaturas.all, :id, :nombre, {:class => "form-control",  :include_blank => true })) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          
+                          <button class="btn btn-block-primary">
+                            Forzar materia
+                          </button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  
+                  <!--- Prohibir --->
+                  <div class="card border-secondary mb-5">
+                    <div class="card-body" align="left"> 
+                      
+                      <div class="row"> 
+                        <h5>Prohibir materia en horario</h5>
+                      </div>
+                      
+                      <div class="row"> 
+                      
+                        <form action="/create_nopuede" method="post">
+                          
+                          <!-- Label and input for dia_id -->
+                          <div class="form-group">
+                            <label for="dia_id">
+                              Elige el día
+                            </label>
+                        
+                            <%= select_tag("dia_id", options_from_collection_for_select(Day.all, :id, :nombre, :class => "form-control")) %>
+                          </div>
+                        
+                          <!-- Label and input for posicion -->
+                          <div class="form-group">
+                            <label for="posicion">
+                              Elige el módulo
+                            </label>
+                        
+                            <%= select_tag("posicion", options_for_select([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , :class => "form-control"  )) %>
+                          </div>
+                          
+                          <!-- Label and input for asignatura -->
+                          <div class="form-group">
+                            <label for="asignatura_id">
+                              Elige la materia
+                            </label>
+                        
+                            <%= select_tag("asignatura_id", options_from_collection_for_select(@asignaturas.all, :id, :nombre, {:class => "form-control",  :include_blank => true })) %>
+                          </div>
+                          
+                          <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+                          
+                          <button class="btn btn-block-warning">
+                            Prohibir materia
+                          </button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </div>  
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+
+<% end %>

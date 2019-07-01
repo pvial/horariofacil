@@ -1,0 +1,109 @@
+<!-- Validation failure messages -->
+<% if @asignatura.present? %>
+  <% if @asignatura.errors.any? %>
+    <% @asignatura.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<% if current_planificador != nil %>
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card border-secondary mb-3" >
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nueva Asignatura 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_asignatura" method="post">
+              
+              <!--- setear colegio --->
+              <input type="hidden" id="colegio_id" name="colegio_id" class="form-control" value="<%= current_planificador.colegio_id %>">
+              
+              
+              <!--- Nombre --->
+              <div class="row"> 
+                <div class="col-md-12">
+                  
+                  <!--- Grupo para Nombre --->
+                  <div class="form-group">
+                    <label for="nombre">
+                      Nombre de Asignatura
+                    </label>
+                
+                    <textarea id="nombre" name="nombre" class="form-control" placeholder="Ej: Lenguaje y Comunicación"></textarea>
+                  </div>
+                  
+                </div>
+                
+              </div>
+          
+              <hr>
+              
+              <!-- Ramo MINEDUC y SALA -->
+              <div class="row">  
+                
+                <!--- Ramo --->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="departamento_id">
+                      Categoría en MINEDUC
+                    </label>
+                    
+                    <br>
+                    <%= select_tag("ramo_id", options_from_collection_for_select(Ramo.all, :id, :nombre), {:class => "form-control",  :include_blank => true }) %>
+                        
+                  </div>
+                </div>
+                
+                <!--- Sala --->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="sala_id">
+                      Requiere uso de sala especial?
+                    </label>
+                    
+                    <br>
+                    <%= select_tag("sala_id", options_from_collection_for_select(Sala.where(:colegio_id => current_planificador.colegio_id), :id, :nombre), {:class => "form-control",  :include_blank => true }) %>
+                        
+                  </div>
+                </div>
+
+              </div>
+              
+              
+              <button class="btn btn-block btn-success">
+                Crear Asignatura
+              </button>
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+
+
+<a href="/asignaturas_indice" class="btn btn-primary">
+  Volver
+</a>
+
+<% end %>

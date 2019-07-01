@@ -1,0 +1,53 @@
+<!-- Validation failure messages -->
+<% if @curso.errors.any? %>
+  <% @curso.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit curso #<%= @curso.id %>
+</h1>
+
+<hr>
+
+<form action="/update_curso/<%= @curso.id %>" method="post">
+  <!-- Label and input for colegio_id -->
+  <div class="form-group">
+    <label for="colegio_id">
+      Colegio
+    </label>
+
+    <input type="text" id="colegio_id" name="colegio_id" class="form-control" value="<%= @curso.colegio_id %>">
+  </div>
+
+  <!-- Label and input for profesorjefe_id -->
+  <div class="form-group">
+    <label for="profesorjefe_id">
+      Profesorjefe
+    </label>
+
+    <input type="text" id="profesorjefe_id" name="profesorjefe_id" class="form-control" value="<%= @curso.profesorjefe_id %>">
+  </div>
+
+  <!-- Label and input for nombre -->
+  <div class="form-group">
+    <label for="nombre">
+      Nombre
+    </label>
+
+    <input type="text" id="nombre" name="nombre" class="form-control" value="<%= @curso.nombre %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update curso
+  </button>
+</form>
+
+<hr>
+
+<a href="/cursos">
+  Go back
+</a>

@@ -1,0 +1,49 @@
+<h1>
+  Sala #<%= @sala.id %> details
+</h1>
+
+<a href="/salas/<%= @sala.id %>/edit">
+  Edit sala
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Colegio
+  </dt>
+  <dd>
+    <%= @sala.colegio_id %>
+  </dd>
+
+  <dt>
+    Disponibilidad
+  </dt>
+  <dd>
+    <%= @sala.disponibilidad %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sala.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sala.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_sala/<%= @sala.id %>">
+  Delete sala
+</a>
+
+<hr>
+
+<a href="/salas">
+  Go back
+</a>

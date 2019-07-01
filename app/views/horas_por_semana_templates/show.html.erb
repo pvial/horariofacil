@@ -1,0 +1,49 @@
+<h1>
+  Horas por semana #<%= @horas_por_semana.id %> details
+</h1>
+
+<a href="/horas_por_semanas/<%= @horas_por_semana.id %>/edit">
+  Edit horas por semana
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Curso
+  </dt>
+  <dd>
+    <%= @horas_por_semana.curso_id %>
+  </dd>
+
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @horas_por_semana.asignatura_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@horas_por_semana.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@horas_por_semana.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_horas_por_semana/<%= @horas_por_semana.id %>">
+  Delete horas por semana
+</a>
+
+<hr>
+
+<a href="/horas_por_semanas">
+  Go back
+</a>

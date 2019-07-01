@@ -1,0 +1,49 @@
+<h1>
+  Requerimiento #<%= @requerimiento.id %> details
+</h1>
+
+<a href="/requerimientos/<%= @requerimiento.id %>/edit">
+  Edit requerimiento
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Nivel
+  </dt>
+  <dd>
+    <%= @requerimiento.nivel_id %>
+  </dd>
+
+  <dt>
+    Ramo
+  </dt>
+  <dd>
+    <%= @requerimiento.ramo_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@requerimiento.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@requerimiento.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_requerimiento/<%= @requerimiento.id %>">
+  Delete requerimiento
+</a>
+
+<hr>
+
+<a href="/requerimientos">
+  Go back
+</a>

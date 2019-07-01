@@ -1,0 +1,68 @@
+
+<!-- Validation failure messages -->
+<% if @curso.present? %>
+  <% if @curso.errors.any? %>
+    <% @curso.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-secondary mb-3">
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Asignar asignatura a curso 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_horas_por_semana" method="post">
+              <!-- Label and input for curso_id -->
+             <input type="hidden" id="curso_id" name="curso_id" class="form-control" value="<%= @curso.id %>">
+            
+              <!-- Label and input for asignatura_id -->
+              <div class="form-group">
+                <label for="asignatura_id">
+                  Asignatura
+                </label>
+            
+                <%= select_tag("asignatura_id", options_from_collection_for_select(Asignatura.where(:colegio_id => current_planificador.colegio_id), :id, :nombre), {:class => "form-control",  :include_blank => true }) %>
+              </div>
+              
+              <!-- Label and input for horasporsemana -->
+              <div class="form-group">
+                <label for="horasporsemana">
+                  Asignatura
+                </label>
+                <input type="text" id="curso_id" name="horasporsemana" class="form-control" %>">
+              </div>
+              
+              <button class="btn btn-block btn-outline-secondary">
+                Crear asignación
+              </button>
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+<a href="/cursos/" class="btn btn-primary">
+  Volver
+</a>
+

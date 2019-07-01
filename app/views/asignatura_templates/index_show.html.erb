@@ -1,0 +1,117 @@
+<% if current_planificador != nil %>
+
+
+<a href="/asignaturas/" class="btn btn-primary" align="bottom">  Ir a vista general </a>
+
+<div class="container">
+    <div style="height: 50px;"></div>
+
+    
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-success mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-success mb-3">  Asignaturas por Curso </h6>
+          
+          <div class="card-body" align="left">
+                
+                <%= @curso.nombre %> 
+                <!--- selector de cursos --->  
+                <div class="row">
+                    <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                        <option value="">Elige otro curso para ver el detalle</option>
+                        <% Curso.where(:colegio_id => current_planificador.colegio.id).each do |curs| %>
+                            <option value="/asignaturas_show/<%= curs.id%>"><%= curs.nombre%></option>
+                        <% end %> 
+                    </select>
+                </div>
+                
+                <div style="height: 10px;"></div>
+
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Asignatura
+                </th>
+            
+                <th>
+                  Requiere espacio (lab/gimnasio, etc)
+                </th>
+                
+                <th>
+                  Horas programadas
+                </th>
+                
+                <th>
+                  Ramo MINEDUC
+                </th>
+                
+                <th>
+                  Requerimiento MINEDUC [en horas]
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% @ramos_id.each do |ramo_id| %>
+              <tr>
+                <td>
+                    <% @asignaturas.where(:ramo_id => ramo_id).each do |asig| %>
+                      <ul>
+                          <li> <%= asig.nombre %> </li>
+                      </ul>
+                    <% end %>
+
+                </td>
+            
+                <td>
+                    <% @asignaturas.where(:ramo_id => ramo_id).each do |asig| %>
+                      <ul>
+                          <li> 
+                              <% if asig.sala_id != nil %>
+                                  <%= Sala.find(asig.sala_id).nombre %>
+                              <% else %>
+                                  N/A 
+                              <% end %> 
+                          </li>
+                      </ul>
+                    <% end %>
+                </td>
+                
+                <td>
+                  <% @asignaturas.where(:ramo_id => ramo_id).each do |asig| %>
+                      <ul>
+                          <li> 
+                              <%= @curso.horas_por_semanas.where(:asignatura_id => asig.id).last.horasporsemana %> 
+                          </li>
+                      </ul>
+                    <% end %>
+                </td>
+            
+                <td>
+                  <%= Ramo.find(ramo_id).nombre %>
+                </td>
+            
+                <td>
+                  <%= @curso.nivel.requerimientos.where(:ramo_id => ramo_id).last.requerimiento %>
+                </td>    
+            
+                <td>
+                  <a href="/cursos/<%= @curso.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Curso </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<a href="/asignaturas/new" class="btn btn-secondary btn-block" align="bottom">  Crear nueva Asignatura </a>
+<% end %>

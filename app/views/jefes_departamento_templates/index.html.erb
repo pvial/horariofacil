@@ -1,0 +1,79 @@
+<% if current_planificador != nil %>
+
+<div class="container">
+    <div style="height: 50px;"></div>
+            
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-secondary mb-3" style="min-height: 500px;">
+          <h6 class="card-header text-white bg-secondary mb-3">  Coordinadores en el sistema: <%= @coordinadors.count %> </h6>
+          
+          <div class="card-body" align="left">
+          
+          <a href="/jefe_depto/new" class="btn btn-primary btn-block" align="bottom">  Crear nuevo Coordinador </a>
+          
+            <table class="table">
+              <tr>
+                <th>
+                  Nombre
+                </th>
+                
+                <th>
+                  E-Mail
+                </th>
+            
+                <th>
+                  Departamento
+                </th>
+                
+                <th>
+                  Número de conexiones
+                </th>
+                
+                <th>
+                  Ultima conexión
+                </th>
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+            
+              <% @coordinadors.each do |coord| %>
+              <tr>
+                <td>
+                   <%= coord.nombre %> 
+                </td>
+                
+                <td>
+                  <%= coord.email %> 
+                </td>
+            
+                <td>
+                  <%= Departamento.find(coord.departamento_id).nombre %>  
+                </td>
+            
+                <td>
+                  <%= coord.sign_in_count %> 
+                </td>    
+            
+                <td>
+                  <%= coord.last_sign_in_at %> 
+                </td>  
+            
+                <td>
+                  <a href="/jefe_deptos/<%= coord.id %>/edit" class="btn btn-warning btn-block" align="bottom">  Editar coordinador </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>

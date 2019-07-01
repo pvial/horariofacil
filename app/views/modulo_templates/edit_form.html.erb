@@ -1,0 +1,63 @@
+<!-- Validation failure messages -->
+<% if @modulo.errors.any? %>
+  <% @modulo.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit modulo #<%= @modulo.id %>
+</h1>
+
+<hr>
+
+<form action="/update_modulo/<%= @modulo.id %>" method="post">
+  <!-- Label and input for curso_id -->
+  <div class="form-group">
+    <label for="curso_id">
+      Curso
+    </label>
+
+    <input type="text" id="curso_id" name="curso_id" class="form-control" value="<%= @modulo.curso_id %>">
+  </div>
+
+  <!-- Label and input for dia_id -->
+  <div class="form-group">
+    <label for="dia_id">
+      Dia
+    </label>
+
+    <input type="text" id="dia_id" name="dia_id" class="form-control" value="<%= @modulo.dia_id %>">
+  </div>
+
+  <!-- Label and input for activo -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="activo">
+    <input id="activo" class="form-check-input" name="activo" type="checkbox" value="1" <%= "checked" if @modulo.activo %>>
+
+    <label for="activo" class="form-check-label">
+      Activo
+    </label>
+  </div>
+
+  <!-- Label and input for posicion -->
+  <div class="form-group">
+    <label for="posicion">
+      Posicion
+    </label>
+
+    <input type="text" id="posicion" name="posicion" class="form-control" value="<%= @modulo.posicion %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update modulo
+  </button>
+</form>
+
+<hr>
+
+<a href="/modulos">
+  Go back
+</a>

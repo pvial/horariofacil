@@ -1,0 +1,56 @@
+<h1>
+  Dedicacion #<%= @dedicacion.id %> details
+</h1>
+
+<a href="/dedicacions/<%= @dedicacion.id %>/edit">
+  Edit dedicacion
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @dedicacion.profesor_id %>
+  </dd>
+
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @dedicacion.asignatura_id %>
+  </dd>
+
+  <dt>
+    Dedicacion
+  </dt>
+  <dd>
+    <%= @dedicacion.dedicacion %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@dedicacion.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@dedicacion.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_dedicacion/<%= @dedicacion.id %>">
+  Delete dedicacion
+</a>
+
+<hr>
+
+<a href="/dedicacions">
+  Go back
+</a>

@@ -1,0 +1,66 @@
+<h1>
+  All requerimientos
+</h1>
+
+<a href="/requerimientos/new">
+  Add a new requerimiento
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Nivel
+    </th>
+
+    <th>
+      Ramo
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @requerimientos.each do |requerimiento| %>
+  <tr>
+    <td>
+      <%= requerimiento.id %>
+    </td>
+
+    <td>
+      <%= requerimiento.nivel_id %>
+    </td>
+
+    <td>
+      <%= requerimiento.ramo_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(requerimiento.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(requerimiento.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/requerimientos/<%= requerimiento.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

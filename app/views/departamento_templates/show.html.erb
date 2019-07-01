@@ -1,0 +1,49 @@
+<h1>
+  Departamento #<%= @departamento.id %> details
+</h1>
+
+<a href="/departamentos/<%= @departamento.id %>/edit">
+  Edit departamento
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Colegio
+  </dt>
+  <dd>
+    <%= @departamento.colegio_id %>
+  </dd>
+
+  <dt>
+    Nombre
+  </dt>
+  <dd>
+    <%= @departamento.nombre %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@departamento.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@departamento.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_departamento/<%= @departamento.id %>">
+  Delete departamento
+</a>
+
+<hr>
+
+<a href="/departamentos">
+  Go back
+</a>

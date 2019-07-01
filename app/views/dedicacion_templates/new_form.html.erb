@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @dedicacion.present? %>
+  <% if @dedicacion.errors.any? %>
+    <% @dedicacion.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new dedicacion
+</h1>
+
+<hr>
+
+<form action="/create_dedicacion" method="post">
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @dedicacion.try(:profesor_id) %>">
+  </div>
+
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @dedicacion.try(:asignatura_id) %>">
+  </div>
+
+  <!-- Label and input for dedicacion -->
+  <div class="form-group">
+    <label for="dedicacion">
+      Dedicacion
+    </label>
+
+    <input type="text" id="dedicacion" name="dedicacion" class="form-control" value="<%= @dedicacion.try(:dedicacion) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create dedicacion
+  </button>
+</form>
+
+<hr>
+
+<a href="/dedicacions">
+  Go back
+</a>

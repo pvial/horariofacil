@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @requerimiento.present? %>
+  <% if @requerimiento.errors.any? %>
+    <% @requerimiento.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new requerimiento
+</h1>
+
+<hr>
+
+<form action="/create_requerimiento" method="post">
+  <!-- Label and input for nivel_id -->
+  <div class="form-group">
+    <label for="nivel_id">
+      Nivel
+    </label>
+
+    <input type="text" id="nivel_id" name="nivel_id" class="form-control" value="<%= @requerimiento.try(:nivel_id) %>">
+  </div>
+
+  <!-- Label and input for ramo_id -->
+  <div class="form-group">
+    <label for="ramo_id">
+      Ramo
+    </label>
+
+    <input type="text" id="ramo_id" name="ramo_id" class="form-control" value="<%= @requerimiento.try(:ramo_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create requerimiento
+  </button>
+</form>
+
+<hr>
+
+<a href="/requerimientos">
+  Go back
+</a>

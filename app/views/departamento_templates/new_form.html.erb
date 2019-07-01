@@ -1,0 +1,60 @@
+<!-- Validation failure messages -->
+<% if @curso.present? %>
+  <% if @curso.errors.any? %>
+    <% @curso.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="container">
+    
+    <div style="height: 50px;">
+    </div>
+            
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card border-secondary mb-3">
+          
+          <h6 class="card-header text-white bg-secondary mb-3">  
+            Nuevo curso 
+          </h6>
+          
+          <div class="card-body" align="left">
+           
+            <!--- comienzo de la form --->
+            <form action="/create_departamento" method="post">
+              <!-- Label and input for colegio_id -->
+                <input type="hidden" id="colegio_id" name="colegio_id" class="form-control" value="<%= current_planificador.colegio_id %>">
+            
+            
+              <!-- Label and input for nombre -->
+              <div class="form-group">
+                <label for="nombre">
+                  Nombre
+                </label>
+            
+                <input type="text" id="nombre" name="nombre" class="form-control" value="<%= @departamento.try(:nombre) %>">
+              </div>
+            
+              <button class="btn btn-block btn-outline-secondary">
+                Crear departamento
+              </button>
+            </form>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+<a href="/departamentos" class="btn btn-primary">
+  Volver
+</a>
+
