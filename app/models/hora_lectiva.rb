@@ -14,4 +14,6 @@
 class HoraLectiva < ApplicationRecord
     belongs_to :profesor
     belongs_to :dia, :class_name => "Day"
+    
+    
 end

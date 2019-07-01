@@ -1,0 +1,97 @@
+<% if current_planificador != nil %>
+  
+  <div class="container">
+      
+      <div class="row">
+          <a href="/profesors/curs/<%= @profesor.id%>" class="btn btn-secondary " align="bottom">  Ver cursos del profe </a>
+          <a href="/profesors/asig/<%= @profesor.id%>" class="btn btn-primary " align="bottom">  Ver asignaturas del profe</a>
+          <a href="/profesors/hor/<%= @profesor.id%>" class="btn btn-secondary " align="bottom">  Ver horario del profe</a>
+      </div>
+      
+      <div style="height: 50px;"></div>
+      
+      <!--- asignaturas --->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Dedicación a Asignaturas </h6>
+            
+            <div class="card-body" align="left">
+            
+            <a href="/dedicacions/new" class="btn btn-primary btn-block" align="bottom">  Dedicar horas a una asignatura </a>
+            
+            <table class="table">
+              <tr>
+                <th>
+                  Asignatura
+                </th>
+            
+                <th>
+                  Horas
+                </th>
+                
+                <th>
+                  Mineduc
+                </th>
+                
+                
+                <th>
+                  
+                </th>
+              
+              </tr>
+              
+              <tr>
+                <td>
+                  Nro Asignaturas = <%= @profesor.dedicacions.pluck(:asignatura_id).uniq.count %>
+                </td>
+                <td>
+                  <% if @profesor.dedicacions != nil %>
+                  Total Horas = <%= @profesor.dedicacions.pluck(:dedicacion).sum %>
+                  <% else %>
+                  No ingresado
+                  <% end %>
+                </td>
+             
+                <td>
+                  
+                </td>
+                
+                <td>
+                  
+                </td>
+              </tr>
+              
+              <% @profesor.dedicacions.each do |hps| %>
+                  <% asignatura = Asignatura.find(hps.asignatura_id) %>
+                  
+                  <tr>
+                    <td>
+                      <%= asignatura.nombre %>
+                    </td>
+                
+                    <td>
+                      <%= hps.dedicacion %>
+                    </td>
+                    
+                    <td>
+                      <%= Ramo.find(asignatura.ramo_id).nombre %>
+                    </td>
+
+                    <td>
+                      <a href="/dedicacions/<%= hps.id%>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Dedicación </a>
+                    </td>
+                    
+                  </tr>
+              <% end %>
+            </table>
+            
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      
+  </div>
+
+<% end %>

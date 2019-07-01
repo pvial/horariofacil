@@ -26,7 +26,7 @@ class HoraLectivasController < ApplicationController
     if @hora_lectiva.valid?
       @hora_lectiva.save
 
-      redirect_to("/hora_lectivas", :notice => "Hora lectiva created successfully.")
+      redirect_back fallback_location: "/"
     else
       render("hora_lectiva_templates/new_form.html.erb")
     end
@@ -49,7 +49,7 @@ class HoraLectivasController < ApplicationController
     if @hora_lectiva.valid?
       @hora_lectiva.save
 
-      redirect_to("/hora_lectivas/#{@hora_lectiva.id}", :notice => "Hora lectiva updated successfully.")
+      redirect_back fallback_location: "/"
     else
       render("hora_lectiva_templates/edit_form.html.erb")
     end

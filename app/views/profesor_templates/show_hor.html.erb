@@ -1,0 +1,105 @@
+<% if current_planificador != nil %>
+  
+  <div class="container">
+      
+      <div class="row">
+          <a href="/profesors/curs/<%= @profesor.id%>" class="btn btn-secondary " align="bottom">  Ver cursos del profe </a>
+          <a href="/profesors/asig/<%= @profesor.id%>" class="btn btn-secondary " align="bottom">  Ver asignaturas del profe</a>
+          <a href="/profesors/hor/<%= @profesor.id%>" class="btn btn-primary " align="bottom">  Ver horario del profe</a>
+      </div>
+      
+      <div style="height: 50px;"></div>
+      
+      <!--- horario --->        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card border-secondary mb-3" style="min-height: 500px;">
+            <h6 class="card-header text-white bg-secondary mb-3">  Horario <%= @profesor.nombre %> </h6>
+            
+            <div class="card-body" align="left">
+              <div class="row">
+                <!--- horario --->
+                <div class="col-md-12">
+                  <table class="table">
+                  <tr>
+                    <th>
+                      Módulo
+                    </th>
+                    
+                    <% Day.all.each do |dia| %>
+                      <th>
+                        <%= dia.nombre %>
+                      </th>
+                    <% end %>
+    
+                  </tr>
+                  
+                  <!--- tabla del horario --->
+                  <% for j in 1..12 do %>
+                    <tr>
+                      <td>
+                         <%= j %> 
+                      </td>
+                      
+                      <% Day.all.each do |dia| %>
+                        <% horalectiva = @horaslectivas.where(:posicion => j).where(:dia_id => dia.id).last %> 
+                        
+                        <td>
+                          <% if horalectiva.activo %>
+                          <div style="background: darkseagreen;", align="center">
+                            
+                            Disponible 
+                            
+                            <form action="/update_hora_lectiva/<%= horalectiva.id %>" method="post">
+
+                              <input type="hidden" id="dia_id" name="dia_id" class="form-control" value="<%= horalectiva.dia_id %>">
+                              <input type="hidden" id="posicion" name="posicion" class="form-control" value="<%= horalectiva.posicion %>">
+                              <input type="hidden" id="activo" name="activo" class="form-control" value="0">
+                              <input type="hidden" id="profesor_id" name="profesor_id" class="form-control" value="<%= horalectiva.profesor_id %>">
+                            
+                            
+                              <button class="btn btn-outline-white">
+                                <i class="fas fa-times-circle"></i>
+                              </button>
+                            </form>
+                          </div>
+                          
+                          <% else %>
+                          <div style="background: gray;", align="center">
+                            
+                            Bloqueado
+                            
+                            <form action="/update_hora_lectiva/<%= horalectiva.id %>" method="post">
+
+                              <input type="hidden" id="dia_id" name="dia_id" class="form-control" value="<%= horalectiva.dia_id %>">
+                              <input type="hidden" id="posicion" name="posicion" class="form-control" value="<%= horalectiva.posicion %>">
+                              <input type="hidden" id="activo" name="activo" class="form-control" value="1">
+                              <input type="hidden" id="profesor_id" name="profesor_id" class="form-control" value="<%= horalectiva.profesor_id %>">
+                            
+                            
+                              <button class="btn btn-outline-white">
+                                <i class="fas fa-times-circle"></i>
+                              </button>
+                            </form>
+                          </div>  
+                            
+                          <% end%>
+                        </td>
+                      
+                      <% end %>
+                      
+                    </tr>
+                  <% end %>
+                  
+                </table>
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+
+<% end %>

@@ -11,6 +11,27 @@ class ProfesorsController < ApplicationController
 
     render("profesor_templates/show.html.erb")
   end
+  
+  def show_curs
+    @profesor = Profesor.find(params.fetch("id_to_display"))
+    @horaslectivas = HoraLectiva.where(:profesor_id => @profesor.id)
+
+    render("profesor_templates/show_cur.html.erb")
+  end
+  
+  def show_hor
+    @profesor = Profesor.find(params.fetch("id_to_display"))
+    @horaslectivas = HoraLectiva.where(:profesor_id => @profesor.id)
+
+    render("profesor_templates/show_hor.html.erb")
+  end
+  
+  def show_asig
+    @profesor = Profesor.find(params.fetch("id_to_display"))
+    @horaslectivas = HoraLectiva.where(:profesor_id => @profesor.id)
+
+    render("profesor_templates/show_asig.html.erb")
+  end
 
   def new_form
     render("profesor_templates/new_form.html.erb")

@@ -8,8 +8,7 @@ end
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "rails", "~> 5.1.2"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3"
+
 # Use Puma as the app server
 gem "puma", "~> 3.7"
 # Use SCSS for stylesheets
@@ -19,6 +18,8 @@ gem "uglifier", ">= 1.3.0"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem "therubyracer", platforms: :ruby
 
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', :group => :development 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
 # Use Redis adapter to run Action Cable in production
@@ -77,3 +78,7 @@ end
 gem "activeadmin", github: "activeadmin/activeadmin"
 gem "devise", github: "plataformatec/devise"
 gem "faker", github: "stympy/faker"
+
+group :production do
+  gem 'pg'
+end

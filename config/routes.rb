@@ -314,6 +314,9 @@ Rails.application.routes.draw do
   # READ
   get("/profesors", { :controller => "profesors", :action => "index" })
   get("/profesors/:id_to_display", { :controller => "profesors", :action => "show" })
+  get("/profesors/hor/:id_to_display", { :controller => "profesors", :action => "show_hor" })
+  get("/profesors/curs/:id_to_display", { :controller => "profesors", :action => "show_curs" })
+  get("/profesors/asig/:id_to_display", { :controller => "profesors", :action => "show_asig" })
 
   # UPDATE
   get("/profesors/:prefill_with_id/edit", { :controller => "profesors", :action => "edit_form" })
