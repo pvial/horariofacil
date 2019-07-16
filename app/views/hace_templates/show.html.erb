@@ -1,0 +1,56 @@
+<h1>
+  Hace #<%= @hace.id %> details
+</h1>
+
+<a href="/haces/<%= @hace.id %>/edit">
+  Edit hace
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @hace.profesor_id %>
+  </dd>
+
+  <dt>
+    Nivel
+  </dt>
+  <dd>
+    <%= @hace.nivel_id %>
+  </dd>
+
+  <dt>
+    Hace
+  </dt>
+  <dd>
+    <%= @hace.hace %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@hace.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@hace.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_hace/<%= @hace.id %>">
+  Delete hace
+</a>
+
+<hr>
+
+<a href="/haces">
+  Go back
+</a>

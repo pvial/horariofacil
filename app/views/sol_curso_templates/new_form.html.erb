@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @sol_curso.present? %>
+  <% if @sol_curso.errors.any? %>
+    <% @sol_curso.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new sol curso
+</h1>
+
+<hr>
+
+<form action="/create_sol_curso" method="post">
+  <!-- Label and input for solucion_id -->
+  <div class="form-group">
+    <label for="solucion_id">
+      Solucion
+    </label>
+
+    <input type="text" id="solucion_id" name="solucion_id" class="form-control" value="<%= @sol_curso.try(:solucion_id) %>">
+  </div>
+
+  <!-- Label and input for posicion -->
+  <div class="form-group">
+    <label for="posicion">
+      Posicion
+    </label>
+
+    <input type="text" id="posicion" name="posicion" class="form-control" value="<%= @sol_curso.try(:posicion) %>">
+  </div>
+
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @sol_curso.try(:asignatura_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create sol curso
+  </button>
+</form>
+
+<hr>
+
+<a href="/sol_cursos">
+  Go back
+</a>

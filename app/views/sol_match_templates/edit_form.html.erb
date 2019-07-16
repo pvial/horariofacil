@@ -1,0 +1,62 @@
+<!-- Validation failure messages -->
+<% if @sol_match.errors.any? %>
+  <% @sol_match.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit sol match #<%= @sol_match.id %>
+</h1>
+
+<hr>
+
+<form action="/update_sol_match/<%= @sol_match.id %>" method="post">
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @sol_match.asignatura_id %>">
+  </div>
+
+  <!-- Label and input for curso_id -->
+  <div class="form-group">
+    <label for="curso_id">
+      Curso
+    </label>
+
+    <input type="text" id="curso_id" name="curso_id" class="form-control" value="<%= @sol_match.curso_id %>">
+  </div>
+
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @sol_match.profesor_id %>">
+  </div>
+
+  <!-- Label and input for solucion_id -->
+  <div class="form-group">
+    <label for="solucion_id">
+      Solucion
+    </label>
+
+    <input type="text" id="solucion_id" name="solucion_id" class="form-control" value="<%= @sol_match.solucion_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update sol match
+  </button>
+</form>
+
+<hr>
+
+<a href="/sol_matches">
+  Go back
+</a>

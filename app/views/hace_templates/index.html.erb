@@ -1,0 +1,74 @@
+<h1>
+  All haces
+</h1>
+
+<a href="/haces/new">
+  Add a new hace
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Profesor
+    </th>
+
+    <th>
+      Nivel
+    </th>
+
+    <th>
+      Hace
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @haces.each do |hace| %>
+  <tr>
+    <td>
+      <%= hace.id %>
+    </td>
+
+    <td>
+      <%= hace.profesor_id %>
+    </td>
+
+    <td>
+      <%= hace.nivel_id %>
+    </td>
+
+    <td>
+      <%= hace.hace %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(hace.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(hace.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/haces/<%= hace.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+<% if @hace.errors.any? %>
+  <% @hace.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit hace #<%= @hace.id %>
+</h1>
+
+<hr>
+
+<form action="/update_hace/<%= @hace.id %>" method="post">
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @hace.profesor_id %>">
+  </div>
+
+  <!-- Label and input for nivel_id -->
+  <div class="form-group">
+    <label for="nivel_id">
+      Nivel
+    </label>
+
+    <input type="text" id="nivel_id" name="nivel_id" class="form-control" value="<%= @hace.nivel_id %>">
+  </div>
+
+  <!-- Label and input for hace -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="hace">
+    <input id="hace" class="form-check-input" name="hace" type="checkbox" value="1" <%= "checked" if @hace.hace %>>
+
+    <label for="hace" class="form-check-label">
+      Hace
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update hace
+  </button>
+</form>
+
+<hr>
+
+<a href="/haces">
+  Go back
+</a>

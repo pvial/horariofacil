@@ -18,4 +18,6 @@ class Colegio < ApplicationRecord
     has_many :salas, :dependent => :destroy
     
     has_many :profesors, :through => :departamentos, :source => :profesors
+    has_many :tienes, :through => :asignaturas, :source => :tienes
+    has_many :curso_musts, :through => :cursos, :source => :curso_musts
 end

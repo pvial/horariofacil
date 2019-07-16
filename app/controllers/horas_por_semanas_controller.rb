@@ -33,6 +33,7 @@ class HorasPorSemanasController < ApplicationController
   end
 
   def edit_form
+    @curso = Curso.find(params.fetch("curso_id"))
     @horas_por_semana = HorasPorSemana.find(params.fetch("prefill_with_id"))
 
     render("horas_por_semana_templates/edit_form.html.erb")

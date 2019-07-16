@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190626163344) do
+ActiveRecord::Schema.define(version: 20190706073451) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20190626163344) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "columna"
   end
 
   create_table "dedicacions", force: :cascade do |t|
@@ -139,6 +140,14 @@ ActiveRecord::Schema.define(version: 20190626163344) do
     t.string "spice"
     t.string "measurement"
     t.string "store_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "haces", force: :cascade do |t|
+    t.integer "profesor_id"
+    t.integer "nivel_id"
+    t.boolean "hace"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -242,6 +251,39 @@ ActiveRecord::Schema.define(version: 20190626163344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nombre"
+  end
+
+  create_table "sol_cursos", force: :cascade do |t|
+    t.integer "solucion_id"
+    t.integer "posicion"
+    t.integer "asignatura_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "curso_id"
+  end
+
+  create_table "sol_matches", force: :cascade do |t|
+    t.integer "asignatura_id"
+    t.integer "curso_id"
+    t.integer "profesor_id"
+    t.integer "solucion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sol_proves", force: :cascade do |t|
+    t.integer "solucion_id"
+    t.integer "posicion"
+    t.integer "asignatura_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "profe_id"
+  end
+
+  create_table "solucions", force: :cascade do |t|
+    t.integer "iteracion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|

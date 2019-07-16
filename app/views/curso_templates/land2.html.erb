@@ -12,15 +12,41 @@
           
         <div class="card mb-6">
           <h4 class="card-header text-white bg-warning mb-6"> Horarios disponibles </h4>
-              <!--- <div class="card-body" align="left"> </div> --->
-          <div style="height: 20px;"></div>
-          
-          <a href="/solucions/correr" class="btn btn-success btn-block" align="bottom"> Optimizar </a>  
           
           <div style="height: 20px;"></div>
           
-          <a href="/cursos_land2" class="btn btn-success btn-block" align="bottom"> Mostrar </a>
+          <a href="/" class="btn btn-success btn-block" align="bottom"> Volver a Optimizar </a>   
+          
+          <!--- fake soluciones --->      
+          <div class="card-body" align="left">
+              <table class="table">
+              <tr>
+                <th>
+                  Solución
+                </th>
+                
+                <th>
+                  
+                </th>
 
+              </tr>
+            
+              <% Ramo.all.each do |r| %>
+              
+              <tr>
+                <td>
+                  Solución <%= r.id %>
+                </td>
+            
+                <td>
+                  <a href="/jefe_deptos/1/edit" class="btn btn-warning btn-block" align="bottom"> Ver solución </a>
+                </td>
+                
+              </tr>
+              <% end %>
+            </table>
+          </div>
+          
         </div>
         
       </div>

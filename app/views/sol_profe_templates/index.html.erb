@@ -1,0 +1,74 @@
+<h1>
+  All sol proves
+</h1>
+
+<a href="/sol_proves/new">
+  Add a new sol profe
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Solucion
+    </th>
+
+    <th>
+      Posicion
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @sol_proves.each do |sol_profe| %>
+  <tr>
+    <td>
+      <%= sol_profe.id %>
+    </td>
+
+    <td>
+      <%= sol_profe.solucion_id %>
+    </td>
+
+    <td>
+      <%= sol_profe.posicion %>
+    </td>
+
+    <td>
+      <%= sol_profe.asignatura_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_profe.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_profe.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/sol_proves/<%= sol_profe.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

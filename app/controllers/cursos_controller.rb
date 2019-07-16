@@ -10,6 +10,12 @@ class CursosController < ApplicationController
 
     render("curso_templates/index.html.erb")
   end
+  
+  def land2
+    @cursos = Curso.all
+
+    render("curso_templates/land2.html.erb")
+  end
 
   def show
     id = params.fetch("id_to_display")
@@ -44,7 +50,7 @@ class CursosController < ApplicationController
   def show_hor
     id = params.fetch("id_to_display")
     @curso = Curso.find(id)
-    @modulos = Modulo.where(:curso_id => id)
+    @modulos = @curso.modulos
     @asignaturas = @curso.asignaturas
     
 
@@ -62,9 +68,6 @@ class CursosController < ApplicationController
     @curso.profesorjefe_id = params.fetch("profesorjefe_id")
     @curso.nombre = params.fetch("nombre")
     @curso.nivel_id = params.fetch("nivel_id")
-    
-    
-    
     
     if @curso.valid?
       @curso.save

@@ -1,0 +1,58 @@
+<h1>
+  All solucions
+</h1>
+
+<a href="/solucions/new">
+  Add a new solucion
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Iteracion
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @solucions.each do |solucion| %>
+  <tr>
+    <td>
+      <%= solucion.id %>
+    </td>
+
+    <td>
+      <%= solucion.iteracion %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(solucion.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(solucion.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/solucions/<%= solucion.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

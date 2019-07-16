@@ -1,0 +1,27 @@
+<table class="table">
+              <tr>
+                <th>
+                  Solución
+                </th>
+                
+                <th>
+                  Mod
+                </th>
+
+              </tr>
+              
+ <%= HorasPorSemana.all.each do |horas| %>  
+ 
+              <tr>
+                <td>
+                  <%= horas %>
+                </td>
+            
+                <td>
+                  <%= Modulo.find(horas.id) %>
+                </td>
+                
+              </tr>
+  <% end %>
+</table>
+

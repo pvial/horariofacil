@@ -1,0 +1,74 @@
+<h1>
+  All sol cursos
+</h1>
+
+<a href="/sol_cursos/new">
+  Add a new sol curso
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Solucion
+    </th>
+
+    <th>
+      Posicion
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @sol_cursos.each do |sol_curso| %>
+  <tr>
+    <td>
+      <%= sol_curso.id %>
+    </td>
+
+    <td>
+      <%= sol_curso.solucion_id %>
+    </td>
+
+    <td>
+      <%= sol_curso.posicion %>
+    </td>
+
+    <td>
+      <%= sol_curso.asignatura_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_curso.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_curso.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/sol_cursos/<%= sol_curso.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

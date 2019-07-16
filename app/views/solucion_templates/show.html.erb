@@ -1,0 +1,42 @@
+<h1>
+  Solucion #<%= @solucion.id %> details
+</h1>
+
+<a href="/solucions/<%= @solucion.id %>/edit">
+  Edit solucion
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Iteracion
+  </dt>
+  <dd>
+    <%= @solucion.iteracion %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@solucion.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@solucion.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_solucion/<%= @solucion.id %>">
+  Delete solucion
+</a>
+
+<hr>
+
+<a href="/solucions">
+  Go back
+</a>

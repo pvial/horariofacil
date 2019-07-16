@@ -1,0 +1,56 @@
+<h1>
+  Sol profe #<%= @sol_profe.id %> details
+</h1>
+
+<a href="/sol_proves/<%= @sol_profe.id %>/edit">
+  Edit sol profe
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Solucion
+  </dt>
+  <dd>
+    <%= @sol_profe.solucion_id %>
+  </dd>
+
+  <dt>
+    Posicion
+  </dt>
+  <dd>
+    <%= @sol_profe.posicion %>
+  </dd>
+
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @sol_profe.asignatura_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sol_profe.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sol_profe.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_sol_profe/<%= @sol_profe.id %>">
+  Delete sol profe
+</a>
+
+<hr>
+
+<a href="/sol_proves">
+  Go back
+</a>

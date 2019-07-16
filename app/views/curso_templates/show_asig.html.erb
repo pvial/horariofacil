@@ -2,7 +2,7 @@
   
   <div class="container">
       <div class="row">
-          <a href="/cursos/prof/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver profes del curso</a>
+          <a href="/cursos/prof/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver profesores del curso</a>
           <a href="/cursos/asig/<%= @curso.id%>" class="btn btn-primary " align="bottom">  Ver asignaturas del curso</a>
           <a href="/cursos/hor/<%= @curso.id%>" class="btn btn-secondary " align="bottom">  Ver horario del curso</a>
       </div>
@@ -75,7 +75,7 @@
                     </td>
 
                     <td>
-                      <a href="/horas_por_semanas/<%= hps.id%>/edit" class="btn btn-warning btn-block" align="bottom">  Editar Asignación </a>
+                      <a href="/horas_por_semanas/<%= hps.id%>/edit/<%= @curso.id %>" class="btn btn-warning btn-block" align="bottom">  Editar Asignación </a>
                     </td>
                     
                   </tr>

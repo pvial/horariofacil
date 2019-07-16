@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @solucion.present? %>
+  <% if @solucion.errors.any? %>
+    <% @solucion.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new solucion
+</h1>
+
+<hr>
+
+<form action="/create_solucion" method="post">
+  <!-- Label and input for iteracion -->
+  <div class="form-group">
+    <label for="iteracion">
+      Iteracion
+    </label>
+
+    <input type="text" id="iteracion" name="iteracion" class="form-control" value="<%= @solucion.try(:iteracion) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create solucion
+  </button>
+</form>
+
+<hr>
+
+<a href="/solucions">
+  Go back
+</a>

@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @sol_match.present? %>
+  <% if @sol_match.errors.any? %>
+    <% @sol_match.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new sol match
+</h1>
+
+<hr>
+
+<form action="/create_sol_match" method="post">
+  <!-- Label and input for asignatura_id -->
+  <div class="form-group">
+    <label for="asignatura_id">
+      Asignatura
+    </label>
+
+    <input type="text" id="asignatura_id" name="asignatura_id" class="form-control" value="<%= @sol_match.try(:asignatura_id) %>">
+  </div>
+
+  <!-- Label and input for curso_id -->
+  <div class="form-group">
+    <label for="curso_id">
+      Curso
+    </label>
+
+    <input type="text" id="curso_id" name="curso_id" class="form-control" value="<%= @sol_match.try(:curso_id) %>">
+  </div>
+
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @sol_match.try(:profesor_id) %>">
+  </div>
+
+  <!-- Label and input for solucion_id -->
+  <div class="form-group">
+    <label for="solucion_id">
+      Solucion
+    </label>
+
+    <input type="text" id="solucion_id" name="solucion_id" class="form-control" value="<%= @sol_match.try(:solucion_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create sol match
+  </button>
+</form>
+
+<hr>
+
+<a href="/sol_matches">
+  Go back
+</a>

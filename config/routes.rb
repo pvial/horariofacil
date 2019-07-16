@@ -1,4 +1,106 @@
 Rails.application.routes.draw do
+  # Routes for the Sol match resource:
+
+  # CREATE
+  get("/sol_matches/new", { :controller => "sol_matches", :action => "new_form" })
+  post("/create_sol_match", { :controller => "sol_matches", :action => "create_row" })
+
+  # READ
+  get("/sol_matches", { :controller => "sol_matches", :action => "index" })
+  get("/sol_matches/:id_to_display", { :controller => "sol_matches", :action => "show" })
+
+  # UPDATE
+  get("/sol_matches/:prefill_with_id/edit", { :controller => "sol_matches", :action => "edit_form" })
+  post("/update_sol_match/:id_to_modify", { :controller => "sol_matches", :action => "update_row" })
+
+  # DELETE
+  get("/delete_sol_match/:id_to_remove", { :controller => "sol_matches", :action => "destroy_row" })
+  
+  
+
+  #------------------------------
+
+  # Routes for the Sol profe resource:
+
+  # CREATE
+  get("/sol_proves/new", { :controller => "sol_proves", :action => "new_form" })
+  post("/create_sol_profe", { :controller => "sol_proves", :action => "create_row" })
+
+  # READ
+  get("/sol_proves", { :controller => "sol_proves", :action => "index" })
+  get("/sol_proves/:id_to_display", { :controller => "sol_proves", :action => "show" })
+
+  # UPDATE
+  get("/sol_proves/:prefill_with_id/edit", { :controller => "sol_proves", :action => "edit_form" })
+  post("/update_sol_profe/:id_to_modify", { :controller => "sol_proves", :action => "update_row" })
+
+  # DELETE
+  get("/delete_sol_profe/:id_to_remove", { :controller => "sol_proves", :action => "destroy_row" })
+
+  #------------------------------
+
+  # Routes for the Sol curso resource:
+
+  # CREATE
+  get("/sol_cursos/new", { :controller => "sol_cursos", :action => "new_form" })
+  post("/create_sol_curso", { :controller => "sol_cursos", :action => "create_row" })
+
+  # READ
+  get("/sol_cursos", { :controller => "sol_cursos", :action => "index" })
+  get("/sol_cursos/:id_to_display", { :controller => "sol_cursos", :action => "show" })
+
+  # UPDATE
+  get("/sol_cursos/:prefill_with_id/edit", { :controller => "sol_cursos", :action => "edit_form" })
+  post("/update_sol_curso/:id_to_modify", { :controller => "sol_cursos", :action => "update_row" })
+
+  # DELETE
+  get("/delete_sol_curso/:id_to_remove", { :controller => "sol_cursos", :action => "destroy_row" })
+
+  #------------------------------
+
+  # Routes for the Solucion resource:
+
+  # CREATE
+  get("/solucions/new", { :controller => "solucions", :action => "new_form" })
+  post("/create_solucion", { :controller => "solucions", :action => "create_row" })
+  
+  # OPTIMIZAR
+  get("/solucions/correr", { :controller => "solucions", :action => "correr" })
+  
+  # READ
+  get("/solucions", { :controller => "solucions", :action => "index" })
+  get("/solucions/:id_to_display", { :controller => "solucions", :action => "show" })
+
+  # UPDATE
+  get("/solucions/:prefill_with_id/edit", { :controller => "solucions", :action => "edit_form" })
+  post("/update_solucion/:id_to_modify", { :controller => "solucions", :action => "update_row" })
+
+  # DELETE
+  get("/delete_solucion/:id_to_remove", { :controller => "solucions", :action => "destroy_row" })
+  
+  
+
+  #------------------------------
+
+  # Routes for the Hace resource:
+
+  # CREATE
+  get("/haces/new", { :controller => "haces", :action => "new_form" })
+  post("/create_hace", { :controller => "haces", :action => "create_row" })
+
+  # READ
+  get("/haces", { :controller => "haces", :action => "index" })
+  get("/haces/:id_to_display", { :controller => "haces", :action => "show" })
+
+  # UPDATE
+  get("/haces/:prefill_with_id/edit", { :controller => "haces", :action => "edit_form" })
+  post("/update_hace/:id_to_modify", { :controller => "haces", :action => "update_row" })
+
+  # DELETE
+  get("/delete_hace/:id_to_remove", { :controller => "haces", :action => "destroy_row" })
+
+  #------------------------------
+
   # Routes for the Coordinador resource:
 
   # CREATE
@@ -45,7 +147,7 @@ Rails.application.routes.draw do
   get("/horas_por_semanas/:id_to_display", { :controller => "horas_por_semanas", :action => "show" })
 
   # UPDATE
-  get("/horas_por_semanas/:prefill_with_id/edit", { :controller => "horas_por_semanas", :action => "edit_form" })
+  get("/horas_por_semanas/:prefill_with_id/edit/:curso_id", { :controller => "horas_por_semanas", :action => "edit_form" })
   post("/update_horas_por_semana/:id_to_modify", { :controller => "horas_por_semanas", :action => "update_row" })
 
   # DELETE
@@ -302,6 +404,10 @@ Rails.application.routes.draw do
 
   # DELETE
   get("/delete_curso/:id_to_remove", { :controller => "cursos", :action => "destroy_row" })
+  
+  #EXTRA
+  get("/cursos_land2", { :controller => "cursos", :action => "land2" })
+  
 
   #------------------------------
 

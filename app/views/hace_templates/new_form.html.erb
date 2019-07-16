@@ -1,0 +1,56 @@
+<!-- Validation failure messages -->
+<% if @hace.present? %>
+  <% if @hace.errors.any? %>
+    <% @hace.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new hace
+</h1>
+
+<hr>
+
+<form action="/create_hace" method="post">
+  <!-- Label and input for profesor_id -->
+  <div class="form-group">
+    <label for="profesor_id">
+      Profesor
+    </label>
+
+    <input type="text" id="profesor_id" name="profesor_id" class="form-control" value="<%= @hace.try(:profesor_id) %>">
+  </div>
+
+  <!-- Label and input for nivel_id -->
+  <div class="form-group">
+    <label for="nivel_id">
+      Nivel
+    </label>
+
+    <input type="text" id="nivel_id" name="nivel_id" class="form-control" value="<%= @hace.try(:nivel_id) %>">
+  </div>
+
+  <!-- Label and input for hace -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="hace">
+    <input id="hace" class="form-check-input" name="hace" type="checkbox" <%= "checked" if @hace.try(:hace) %>>
+
+    <label for="hace" class="form-check-label">
+      Hace
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create hace
+  </button>
+</form>
+
+<hr>
+
+<a href="/haces">
+  Go back
+</a>

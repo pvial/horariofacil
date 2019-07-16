@@ -1,0 +1,82 @@
+<h1>
+  All sol matches
+</h1>
+
+<a href="/sol_matches/new">
+  Add a new sol match
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Asignatura
+    </th>
+
+    <th>
+      Curso
+    </th>
+
+    <th>
+      Profesor
+    </th>
+
+    <th>
+      Solucion
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @sol_matches.each do |sol_match| %>
+  <tr>
+    <td>
+      <%= sol_match.id %>
+    </td>
+
+    <td>
+      <%= sol_match.asignatura_id %>
+    </td>
+
+    <td>
+      <%= sol_match.curso_id %>
+    </td>
+
+    <td>
+      <%= sol_match.profesor_id %>
+    </td>
+
+    <td>
+      <%= sol_match.solucion_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_match.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(sol_match.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/sol_matches/<%= sol_match.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

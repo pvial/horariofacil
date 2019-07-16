@@ -51,7 +51,7 @@
                 </td>
                 
                 <td>
-                  <% if Dedicacion.where(:profesor_id => profe.id).first == nil %>
+                  <% if Dedicacion.where(:profesor_id => profe.id).any? %>
                     <% Dedicacion.where(:profesor_id => profe.id).each do |ded| %>
                       <ul>
                         <li> <%= Asignatura.find(ded.asignatura_id).nombre %>: <%= ded.dedicacion %> </li>
@@ -63,7 +63,7 @@
                 </td>
             
                 <td>
-                  <% if Curso.where(:profesorjefe_id => profe.id).last != nil %>
+                  <% if Curso.where(:profesorjefe_id => profe.id).any? %>
                     <%= Curso.where(:profesorjefe_id => profe.id).last.nombre %>
                     
                   <% else %>

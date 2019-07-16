@@ -1,0 +1,63 @@
+<h1>
+  Sol match #<%= @sol_match.id %> details
+</h1>
+
+<a href="/sol_matches/<%= @sol_match.id %>/edit">
+  Edit sol match
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Asignatura
+  </dt>
+  <dd>
+    <%= @sol_match.asignatura_id %>
+  </dd>
+
+  <dt>
+    Curso
+  </dt>
+  <dd>
+    <%= @sol_match.curso_id %>
+  </dd>
+
+  <dt>
+    Profesor
+  </dt>
+  <dd>
+    <%= @sol_match.profesor_id %>
+  </dd>
+
+  <dt>
+    Solucion
+  </dt>
+  <dd>
+    <%= @sol_match.solucion_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sol_match.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@sol_match.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_sol_match/<%= @sol_match.id %>">
+  Delete sol match
+</a>
+
+<hr>
+
+<a href="/sol_matches">
+  Go back
+</a>
