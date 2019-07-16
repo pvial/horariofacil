@@ -152,7 +152,5 @@ class Solucion < ApplicationRecord
         
     end
 
-
-
-    
+end
 end
