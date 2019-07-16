@@ -15,7 +15,7 @@ class Curso < ApplicationRecord
     belongs_to :colegio
     belongs_to :profesorjefe, :required => false, :class_name => "Profesor"
     has_many :curso_musts, :class_name => "Must", :dependent => :destroy
-    has_many :curso_cants, 
+    has_many :curso_cants
     belongs_to :nivel
     has_many :horas_por_semanas, :dependent => :destroy
     
